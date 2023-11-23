@@ -24,4 +24,4 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
 export const firebaseDB = getFirestore(firebaseApp)
 export const firebaseStorage = getStorage(firebaseApp)
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
