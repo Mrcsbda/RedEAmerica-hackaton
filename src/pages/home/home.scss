@@ -1,0 +1,201 @@
+@import '../../assets/styles/universal.scss';
+@import '../../assets/styles/variables.scss';
+
+.home {
+    &__section {
+        &__search {
+            background-image: linear-gradient(rgba(0.004, 0.078, 0.055, 0.5), rgba(0.004, 0.078, 0.055, 0.5)), url('https://www.redeamerica.org/ReporteAnual2022/assets/img/home/colaborar.jpg');
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 80vh;
+            width: 100%;
+        }
+
+        &__categories {
+            // background-color: aqua;
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+
+            &__title {
+                color: $night;
+                font-size: 2rem;
+            }
+        }
+
+        &__lastContent {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+
+            &__title {
+                color: $night;
+                font-size: 2rem;
+            }
+        }
+
+        &__searchByCountry {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+
+            &__title {
+                color: $night;
+                font-size: 2rem;
+            }
+            button {
+                padding: .5rem 1rem;
+                border-radius: 2rem;
+                background-color: $apple-green;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+                color: $night;
+                width: auto;
+                &:hover {
+                    background-color: $night;
+                    color: $mindaro;
+                }
+            }
+
+
+        }
+    }
+
+    &__article {
+        &__search {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 3rem;
+        }
+
+        &__title {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 0 4rem;
+            font-size: 1.5rem;
+
+        }
+
+        &__categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .5rem;
+            padding-bottom: 1rem;
+
+            &__btn {
+                padding: 2rem 3rem;
+                border-radius: 2rem;
+                background-color: $apple-green;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+                color: $night;
+                width: auto;
+            }
+        }
+
+        &__loadMoreBtn {
+            display: flex;
+            align-items: center;
+            padding: 1rem 3rem;
+            border-radius: 2rem;
+            background-color: $night;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: $mindaro;
+            width: auto;
+            font-size: 1rem;
+
+            span {
+                padding: 0 1rem;
+            }
+
+            &__icon {
+                font-size: 2rem;
+            }
+        }
+
+        &__searchByCountry {
+          
+            &__honduras {
+                position: absolute;
+                top: 60px;
+                right: 70px;
+            }
+            &__colombia {
+                position: absolute;
+                top: 130px;
+                right: 0px;
+            }
+            &__venezuela {
+                position: absolute;
+                top: 220px;
+                right: 60px;
+            }
+            &__brasil {
+                position: absolute;
+                top: 280px;
+                right: 60px;
+            }
+            &__méxico {
+                position: absolute;
+                top: 110px;
+                left: 60px;
+            }
+            &__guatemala {
+                position: absolute;
+                top: 200px;
+                left: 60px;
+            }
+            &__costarica {
+                position: absolute;
+                top: 300px;
+                left: 0px;
+            }
+            &__ecuador {
+                position: absolute;
+                top: 380px;
+                left: 30px;
+            }
+            &__perú {
+                position: absolute;
+                top: 460px;
+                left: 30px;
+            }
+            &__chile {
+                position: absolute;
+                top: 570px;
+                left: 70px;
+            }
+        }
+    }
+}
