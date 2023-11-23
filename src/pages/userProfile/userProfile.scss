@@ -1,0 +1,73 @@
+@import "../../assets/styles/variables.scss";
+
+.user-profile {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    &__info-container {
+        width: 260px;
+        border-right: 1px solid rgb(177, 177, 177);
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 30px;
+        gap: 3px;
+    }
+
+    &__avatar {
+        outline: 1px solid $night;
+        margin-bottom: 15px;
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        color: $night;
+
+    }
+
+    &__country {
+        font-weight: 400;
+        font-size: 14px;
+        text-align: center;
+        color: $night;
+        color: rgb(177, 177, 177);
+        margin-bottom: 10px;
+    }
+
+    &__description {
+        font-weight: 400;
+        font-size: 15px;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px;
+    }
+
+    &__social-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    &__social-icon {
+        svg {
+            width: 30px;
+            height: 30px;
+            color: $night;
+        }
+    }
+
+    &__subtitle {
+        text-align: center;
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+}
