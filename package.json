@@ -15,7 +15,6 @@
     "@mui/material": "^5.14.18",
     "@reduxjs/toolkit": "^1.9.7",
     "firebase": "^10.6.0",
-    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
