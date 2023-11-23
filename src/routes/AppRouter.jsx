@@ -13,6 +13,7 @@ import SignUp from '../pages/signUp/signUp'
 import UserProfile from '../pages/userProfile/UserProfile'
 import LandingPage from '../pages/landingPage/LandingPage'
 import Members from '../pages/members/Members'
+import AddPost from '../pages/addPost/AddPost'
 
 const AppRouter = () => {
     const { role, isAuthenticated } = useSelector(state => state.auth)
@@ -41,6 +42,7 @@ const AppRouter = () => {
                                             <Route path="/comments">
                                                 <Route path=":postId" element={<Comments />} />
                                             </Route>
+                                            <Route path='add-post' element={<AddPost />} />
                                             <Route path='profile' element={<UserProfile />} />
                                             <Route path='members' element={<Members />} />
                                         </Route>
