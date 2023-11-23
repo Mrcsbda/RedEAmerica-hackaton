@@ -2,8 +2,14 @@ import React from 'react'
 import "./userProfile.scss"
 import { Avatar, Button } from '@mui/material'
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
+  const navigate = useNavigate()
+
+  const navigateToContactForm = () => {
+    navigate("/home/contact/1")
+  }
   return (
     <article className='user-profile'>
       <section className='user-profile__info-container'>
@@ -19,12 +25,12 @@ const UserProfile = () => {
           corrugar y bag-in-box; además, somos el único productor Panamericano de papel para corrugar y empaques corrugados.
         </p>
         <div className='user-profile__social-container'>
-          <a href="" className='user-profile__social-icon'><FaFacebook /></a>
           <a href="" className='user-profile__social-icon'><FaLinkedin /></a>
+          <a href="" className='user-profile__social-icon'><FaFacebook /></a>
           <a href="" className='user-profile__social-icon'><FaInstagram /></a>
         </div>
-        <h2 className='user-profile__subtitle'>¿Quieres trabajar con nosotros?</h2>
-        <Button variant="contained">¡Contactanos!</Button>
+        <h2 className='user-profile__subtitle'>¿Quieres colaborar con nosotros?</h2>
+        <Button className='user-profile__button' variant="contained" onClick={navigateToContactForm}>¡Contactanos!</Button>
       </section>
       <section>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

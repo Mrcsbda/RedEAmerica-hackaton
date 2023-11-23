@@ -7,9 +7,9 @@
     &__info-container {
         width: 260px;
         border-right: 1px solid rgb(177, 177, 177);
-        height: 100vh;
+        height: calc(100vh - 67px);
         position: sticky;
-        top: 0;
+        top: 67px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -69,5 +69,10 @@
         text-align: center;
         font-size: 17px;
         margin-bottom: 10px;
+    }
+
+    &__button {
+        font-family: 'Sora', sans-serif !important;
+        text-transform: capitalize !important;
     }
 }

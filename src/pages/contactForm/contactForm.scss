@@ -1,0 +1,41 @@
+@import "../../assets/styles/variables.scss";
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    &__card {
+        padding:30px;
+        border: 1px solid $fern-green;
+        border-radius: 5px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: max-content;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
+
+    &__input {
+        width: 100%;
+    }
+
+    &__button {
+        font-family: 'Sora', sans-serif !important;
+        text-transform: capitalize !important;
+        margin: 10px;
+    }
+}
