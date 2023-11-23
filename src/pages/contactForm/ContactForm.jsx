@@ -27,6 +27,7 @@ const ContactForm = () => {
                         placeholder="¿Cómo te gustaria colaborar con nosotros?"
                         multiline
                         variant="standard"
+                        className='contact-form__input'
                     />
                     <Button variant="contained" className='contact-form__button'>Enviar</Button>
                 </form>
