@@ -3,14 +3,12 @@ import './login.scss';
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { loginWithEmailAndPassword } from '../../store/slides/auth/authThunk';
 
 const Login = () => {
 
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     dispatch(loginWithEmailAndPassword(data));
