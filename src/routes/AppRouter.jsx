@@ -11,9 +11,11 @@ import DashboardAdmin from '../pages/dashboardAdmin/DashboardAdmin'
 import Login from '../pages/login/Login'
 import SignUp from '../pages/signUp/signUp'
 import UserProfile from '../pages/userProfile/UserProfile'
+import LandingPage from '../pages/landingPage/LandingPage'
+import Members from '../pages/members/Members'
 
 const AppRouter = () => {
-    const { isAuthenticated } = useSelector(state => state.auth)
+    const { role, isAuthenticated } = useSelector(state => state.auth)
     const [validateAuth, setValidateAuth] = useState(true)
     return (
         <BrowserRouter>
@@ -22,21 +24,29 @@ const AppRouter = () => {
                     validateAuth && (
                         <>
                             <Route element={<PublicRoutes isAuthenticated={isAuthenticated} />}>
-                                <Route path='/' element={<Layout />}>
-                                    <Route index element={<Home />} />
-                                    <Route path="/post">
-                                        <Route path=":postId" element={<Post />} />
-                                    </Route>
-                                    <Route path="/comments">
-                                        <Route path=":postId" element={<Comments />} />
-                                    </Route>
-                                    <Route path='profile' element={<UserProfile />} />
-                                </Route>
+                                <Route path='/' element={<LandingPage />} />
                                 <Route path='/login' element={<Login />} />
                                 <Route path='/signUp' element={<SignUp />} />
                             </Route>
                             <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
-                                <Route path='/admin' element={<DashboardAdmin />} />
+                                {
+                                    role === "ADMIN" ? (
+                                        <Route path='/home' element={<DashboardAdmin />} />
+                                    ) : (
+                                        <Route path='/home' element={<Layout />}>
+                                            <Route index element={<Home />} />
+                                            <Route path="/post">
+                                                <Route path=":postId" element={<Post />} />
+                                            </Route>
+                                            <Route path="/comments">
+                                                <Route path=":postId" element={<Comments />} />
+                                            </Route>
+                                            <Route path='profile' element={<UserProfile />} />
+                                            <Route path='members' element={<Members />} />
+                                        </Route>
+                                    )
+                                }
+
                             </Route>
                         </>
                     )
