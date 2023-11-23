@@ -36,10 +36,10 @@ const AppRouter = () => {
                                     ) : (
                                         <Route path='/home' element={<Layout />}>
                                             <Route index element={<Home />} />
-                                            <Route path="/post">
+                                            <Route path="post">
                                                 <Route path=":postId" element={<Post />} />
                                             </Route>
-                                            <Route path="/comments">
+                                            <Route path="comments">
                                                 <Route path=":postId" element={<Comments />} />
                                             </Route>
                                             <Route path='add-post' element={<AddPost />} />
