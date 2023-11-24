@@ -28,7 +28,6 @@ const AppRouter = () => {
                                 <Route path='/' element={<LandingPage />} />
                                 <Route path='/login' element={<Login />} />
                                 <Route path='/signUp' element={<SignUp />} />
-                                <Route index element={<Home />} />
                             </Route>
                             <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
                                 {
