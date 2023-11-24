@@ -1,54 +1,72 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./userProfile.scss"
 import { Avatar, Button } from '@mui/material'
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { CiLink } from "react-icons/ci";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { getCompanyInfo } from '../../services/company';
 
 const UserProfile = () => {
   const navigate = useNavigate()
-  const { userLogged } = useSelector(state => state.auth)
+  const [user, setUser] = useState({})
+  const { memberId } = useParams()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    getData()
+  }, [])
+
+  const getData = async () => {
+    const data = await getCompanyInfo(memberId)
+    setUser(data)
+  }
   const navigateToContactForm = () => {
-    navigate("/home/contact/1")
+    navigate(`/home/contact/${memberId}`)
   }
   return (
-    <article className='user-profile'>
-      <section className='user-profile__info-container'>
-        <Avatar
-          alt="Remy Sharp"
-          src={userLogged.logo}
-          sx={{ width: 100, height: 100 }}
-          className='user-profile__avatar'
-        />
-        <h1 className='user-profile__name'>{userLogged.name}</h1>
-        <p className='user-profile__country'>{userLogged.country}</p>
-        <p className='user-profile__description'>{userLogged.description}</p>
-        <div className='user-profile__social-container'>
-          {
-            userLogged?.web && (
-              <a href={userLogged.web} className='user-profile__social-icon' target='_blank'><CiLink /></a>
-            )
-          }
-          {
-            userLogged?.linkeln&& (
-              <a href={userLogged.linkeln} className='user-profile__social-icon' target='_blank'><FaLinkedin /></a>
-            )
-          }
-          {
-            userLogged?.instagram && (
-              <a href={userLogged.instagram} className='user-profile__social-icon' target='_blank'><FaInstagram /></a>
-            )
-          }
-        </div>
-        <h2 className='user-profile__subtitle'>¿Quieres colaborar con nosotros?</h2>
-        <Button className='user-profile__button' variant="contained" onClick={navigateToContactForm}>¡Contactanos!</Button>
-      </section>
-      <section>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-      </section>
-    </article>
+    <>
+      {
+        user?.name && (
+          <article className='user-profile'>
+            <section className='user-profile__info-container'>
+              <Avatar
+                alt="Remy Sharp"
+                src={user.logo}
+                sx={{ width: 100, height: 100 }}
+                className='user-profile__avatar'
+              />
+              <h1 className='user-profile__name'>{user.name}</h1>
+              <p className='user-profile__country'>{user.country}</p>
+              <p className='user-profile__description'>{user.description}</p>
+              <div className='user-profile__social-container'>
+                {
+                  user?.web && (
+                    <a href={user.web} className='user-profile__social-icon' target='_blank'><CiLink /></a>
+                  )
+                }
+                {
+                  user?.linkeln && (
+                    <a href={user.linkeln} className='user-profile__social-icon' target='_blank'><FaLinkedin /></a>
+                  )
+                }
+                {
+                  user?.instagram && (
+                    <a href={user.instagram} className='user-profile__social-icon' target='_blank'><FaInstagram /></a>
+                  )
+                }
+              </div>
+              <h2 className='user-profile__subtitle'>¿Quieres colaborar con nosotros?</h2>
+              <Button className='user-profile__button' variant="contained" onClick={navigateToContactForm}>¡Contactanos!</Button>
+            </section>
+            <section>
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </section>
+          </article>
+        )
+      }
+    </>
+
   )
 }
 
