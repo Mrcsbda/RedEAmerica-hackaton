@@ -19,7 +19,7 @@ const UserProfile = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
     getData()
-  }, [])
+  }, [memberId])
 
   const getData = async () => {
     const dataCompany = await getCompanyInfo(memberId)
