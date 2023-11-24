@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./header.scss"
 import { Avatar } from '@mui/material'
+import { useSelector } from 'react-redux'
 const Header = () => {
+  const { userLogged } = useSelector(state => state.auth)
   return (
     <header className='header'>
       <figure className='header__logo-container'>
@@ -13,7 +15,7 @@ const Header = () => {
         <Avatar
           alt="Remy Sharp"
           className='header__avatar'
-          src="https://media.smurfitkappa.com/-/m/images/shared-assets/skg_logo.svg"
+          src={userLogged.logo}
           sx={{ width: 35, height: 35 }}
         />
       </Link>
