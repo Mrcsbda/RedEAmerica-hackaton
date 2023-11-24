@@ -15,6 +15,7 @@ import LandingPage from '../pages/landingPage/LandingPage'
 import Members from '../pages/members/Members'
 import AddPost from '../pages/addPost/AddPost'
 import ContactForm from '../pages/contactForm/ContactForm'
+import EditPost from '../pages/editPost/EditPost'
 
 const AppRouter = () => {
     const { role, isAuthenticated } = useSelector(state => state.auth)
@@ -50,6 +51,9 @@ const AppRouter = () => {
                                             <Route path='members' element={<Members />} />
                                             <Route path='contact'>
                                                 <Route path=":memberId" element={<ContactForm />} />
+                                            </Route>
+                                            <Route path='edit-post'>
+                                                <Route path=":postId" element={<EditPost />} />
                                             </Route>
                                         </Route>
                                     )

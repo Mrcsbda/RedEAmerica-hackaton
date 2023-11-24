@@ -3,6 +3,7 @@ import "./userProfile.scss"
 import { Avatar, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { CiLink } from "react-icons/ci";
+import { BiEdit } from "react-icons/bi";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCompanyInfo } from '../../services/company';
@@ -11,6 +12,8 @@ const UserProfile = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState({})
   const { memberId } = useParams()
+  const { userLogged } = useSelector(state => state.auth)
+  console.log(userLogged)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -23,6 +26,14 @@ const UserProfile = () => {
   }
   const navigateToContactForm = () => {
     navigate(`/home/contact/${memberId}`)
+  }
+
+  const navigateEditPost = (id) => {
+    navigate(`/home/edit-post/${id}`)
+  }
+
+  const navigatePost = (id) => {
+    navigate(`/home/post/${id}`)
   }
   return (
     <>
@@ -62,7 +73,14 @@ const UserProfile = () => {
             <section className='user-profile__posts'>
               <h1 className='user-profile__posts-title'>Publicaciones de {user.name}</h1>
               <div className='user-profile__posts-container'>
-                <Card sx={{ width: 345 }}>
+                <Card sx={{ width: 345 }} className='user-profile__post'>
+                  {
+                    memberId === userLogged.id && (
+                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
+                        <BiEdit />
+                      </div>
+                    )
+                  }
                   <CardMedia
                     sx={{ height: 140 }}
                     image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
@@ -74,10 +92,17 @@ const UserProfile = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
                   </CardActions>
                 </Card>
-                <Card sx={{ width: 345 }}>
+                <Card sx={{ width: 345 }} className='user-profile__post'>
+                  {
+                    memberId === userLogged.id && (
+                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
+                        <BiEdit />
+                      </div>
+                    )
+                  }
                   <CardMedia
                     sx={{ height: 140 }}
                     image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
@@ -89,10 +114,17 @@ const UserProfile = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
                   </CardActions>
                 </Card>
-                <Card sx={{ width: 345 }}>
+                <Card sx={{ width: 345 }} className='user-profile__post'>
+                  {
+                    memberId === userLogged.id && (
+                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
+                        <BiEdit />
+                      </div>
+                    )
+                  }
                   <CardMedia
                     sx={{ height: 140 }}
                     image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
@@ -104,10 +136,17 @@ const UserProfile = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
                   </CardActions>
                 </Card>
-                <Card sx={{ width: 345 }}>
+                <Card sx={{ width: 345 }} className='user-profile__post'>
+                  {
+                    memberId === userLogged.id && (
+                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
+                        <BiEdit />
+                      </div>
+                    )
+                  }
                   <CardMedia
                     sx={{ height: 140 }}
                     image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
@@ -119,10 +158,17 @@ const UserProfile = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
                   </CardActions>
                 </Card>
-                <Card sx={{ width: 345 }}>
+                <Card sx={{ width: 345 }} className='user-profile__post'>
+                  {
+                    memberId === userLogged.id && (
+                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
+                        <BiEdit />
+                      </div>
+                    )
+                  }
                   <CardMedia
                     sx={{ height: 140 }}
                     image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
@@ -134,10 +180,17 @@ const UserProfile = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
                   </CardActions>
                 </Card>
-                <Card sx={{ width: 345 }}>
+                <Card sx={{ width: 345 }} className='user-profile__post'>
+                  {
+                    memberId === userLogged.id && (
+                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
+                        <BiEdit />
+                      </div>
+                    )
+                  }
                   <CardMedia
                     sx={{ height: 140 }}
                     image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
@@ -149,7 +202,7 @@ const UserProfile = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
                   </CardActions>
                 </Card>
               </div>
