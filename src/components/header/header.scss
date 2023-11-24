@@ -9,6 +9,7 @@
     align-items: center;
     position: sticky;
     top: 0;
+    z-index: 1000;
 
     &__logo-container {
         display: flex;

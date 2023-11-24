@@ -20,6 +20,18 @@ export const createAnCompanyInCollection = async (uid, newCompany) => {
     }
 }
 
+export const getCompanyInfo = async (id) => {
+    try {
+        const companyRef = doc(firebaseDB, `companies`, id);
+        const companySnapshot = await getDoc(companyRef);
+        const company = companySnapshot.data();
+        return company
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
 export const getCompanyFromCollection = async (uid) => {
     try {
         const userRef = doc(firebaseDB, collectionCompany, uid);
