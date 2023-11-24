@@ -13,7 +13,6 @@ const UserProfile = () => {
   const [user, setUser] = useState({})
   const { memberId } = useParams()
   const { userLogged } = useSelector(state => state.auth)
-  console.log(userLogged)
 
   useEffect(() => {
     window.scrollTo(0, 0)

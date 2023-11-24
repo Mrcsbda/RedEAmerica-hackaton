@@ -1,9 +1,9 @@
 
-const fileUpload = async (file) => {
+const fileUpload = async (file, type) => {
     const cloudName = "dazfdevly";
     const uploadPreset = "logos-empresas";
 
-    const urlCloudinary = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+    const urlCloudinary = `https://api.cloudinary.com/v1_1/${cloudName}/${type}/upload`;
 
     const formData = new FormData();
     formData.append("file", file);
