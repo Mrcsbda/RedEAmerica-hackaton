@@ -57,13 +57,8 @@ const AppRouter = () => {
                                                 <Route path=":postId" element={<Comments />} />
                                             </Route>
                                             <Route path='add-post' element={<AddPost />} />
-                                            <Route path='profile'>
-                                                <Route path=":memberId" element={<UserProfile />} />
-                                            </Route>
+                                            <Route path='profile' element={<UserProfile />} />
                                             <Route path='members' element={<Members />} />
-                                            <Route path='contact'>
-                                                <Route path=":memberId" element={<ContactForm />} />
-                                            </Route>
                                         </Route>
                                     )
                                 }
