@@ -26,6 +26,17 @@
         gap: 10px;
     }
 
+    &__title-empty-state {
+        text-align: center;
+        align-self: center;
+        max-width: 300px;
+    }
+
+    &__card {
+        height: 250px;
+        width: 340px;
+    }
+
     &__header {
         span {
             font-family: 'Sora', sans-serif !important;
@@ -58,6 +69,12 @@
 
     &__input {
         width: 100%;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     &__button {
