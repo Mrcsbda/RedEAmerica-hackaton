@@ -15,7 +15,7 @@ import LandingPage from '../pages/landingPage/LandingPage'
 import Members from '../pages/members/Members'
 import AddPost from '../pages/addPost/AddPost'
 import ContactForm from '../pages/contactForm/ContactForm'
-import { setUserLogged } from '../store/slides/auth/auth'
+import { setIsAuthenticated, setRole, setUserLogged } from '../store/slides/auth/auth'
 
 const AppRouter = () => {
     const { role, isAuthenticated } = useSelector(state => state.auth)
@@ -25,9 +25,11 @@ const AppRouter = () => {
 
     useEffect(() => {
         if(userSession?.id){
-            setValidateAuth(true);
             dispatch(setUserLogged(userSession));
+            dispatch(setIsAuthenticated());
+            dispatch(setRole(userSession.rol));
         }
+        setValidateAuth(true);
     }, [])
 
     return (

@@ -40,7 +40,7 @@ export const loginWithEmailAndPassword = (loggedUser) => {
             }
             if(foundUser.isValidate){
                 dispatch(setUserLogged(foundUser));
-                dispatch(setIsAuthenticated(true));
+                dispatch(setIsAuthenticated());
                 dispatch(setRole(foundUser.rol));
                 sessionStorage.setItem("user", JSON.stringify(foundUser));
             }else{
