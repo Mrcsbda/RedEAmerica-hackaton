@@ -14,6 +14,8 @@ import 'swiper/css/pagination';
 //import './styles.css';
 // import required modules
 import { Grid, Pagination } from 'swiper/modules';
+import CardContentPodcast from '../../components/cardContentPodcast/CardContentPodcast';
+import CardContentDocumnts from '../../components/cardContentDocuments/CardContentDocuments';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,6 +64,7 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [selectedContent, setSelectedContent] = useState('');
   const [visibleCategories, setVisibleCategories] = useState(10);
   const navigate = useNavigate();
 
@@ -197,6 +200,12 @@ const Home = () => {
     }
   };
 
+  const handleContentClick = (content) => {
+    navigate(`/${content}`);
+    setSelectedContent(content);
+    console.log(selectedContent);
+  };
+
   // const filteredPosts = post.filter((post) => {
   //   return selectedCategory === "all" || post.category === selectedCategory;
   // });
@@ -262,9 +271,8 @@ const Home = () => {
         <h3 className='home__section__lastContent__title'>Accede a nuestro contenido más reciente...</h3>
         <div className='home__article__lastContent'>
 
-          <h5 className='home__article__lastContent__subTitle'>Ultimas publicaciones en video</h5>
+          <h5 className='home__article__lastContent__subTitle'>Últimas publicaciones en video</h5>
           <hr />
-
           <Swiper
             slidesPerView={4}
             spaceBetween={30}
@@ -297,7 +305,7 @@ const Home = () => {
             ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
-          <bottom>Ver todo el contenido...</bottom>
+            <bottom onClick={() => handleContentClick("video")}>Ver todo el contenido...</bottom>
 
           </article>
 
@@ -305,10 +313,99 @@ const Home = () => {
 
       </section>
 
-      <section>
+      {/*****************Seccion cinco*****************/}
+      <section className='home__section__lastContent'>
+
+        <div className='home__article__lastContent'>
+
+          <h5 className='home__article__lastContent__subTitle'>Últimas publicaciones en podcast</h5>
+          <hr />
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+              renderBullet: function (index, className) {
+                return `<span class="${className}" style="background-color: #004632;"></span>`;
+              },
+            }}
+            modules={[Grid, Pagination]}
+            className="mySwiper"
+            breakpoints={{
+              768: {
+                slidesPerView: 4,
+              },
+              556: {
+                slidesPerView: 2,
+              },
+              0: {
+                slidesPerView: 1,
+              },
+            }}
+          >
+            {Object.keys(post).map((key) => (
+
+              <SwiperSlide key={key}>
+                <CardContentPodcast key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+              </SwiperSlide>
+
+            ))}
+          </Swiper>
+          <article className='home__article__lastContent__btn'>
+            <bottom onClick={() => handleContentClick("podcast")}>Ver todo el contenido...</bottom>
+
+          </article>
+
+        </div>
 
       </section>
 
+      {/*****************Seccion seis*****************/}
+      <section className='home__section__lastContent'>
+
+        <div className='home__article__lastContent'>
+
+          <h5 className='home__article__lastContent__subTitle'>Últimas publicaciones en pdf</h5>
+          <hr />
+          <Swiper
+            slidesPerView={7}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+              renderBullet: function (index, className) {
+                return `<span class="${className}" style="background-color: #004632;"></span>`;
+              },
+            }}
+            modules={[Grid, Pagination]}
+            className="mySwiper"
+            breakpoints={{
+              768: {
+                slidesPerView: 7,
+              },
+              556: {
+                slidesPerView: 5,
+              },
+              0: {
+                slidesPerView: 2,
+              },
+            }}
+          >
+            {Object.keys(post).map((key) => (
+
+              <SwiperSlide key={key}>
+                <CardContentDocumnts key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+              </SwiperSlide>
+
+            ))}
+          </Swiper>
+          <article className='home__article__lastContent__btn'>
+            <bottom onClick={() => handleContentClick("pdf")}>Ver todo el contenido...</bottom>
+
+          </article>
+
+        </div>
+
+      </section>
     </>
   )
 }

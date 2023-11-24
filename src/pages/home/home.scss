@@ -23,7 +23,7 @@
             align-items: center;
             justify-content: center;
             padding: 5rem;
-            gap: 1.5rem;
+            gap: 3rem;
             flex-wrap: wrap;
 
             &__title {
@@ -40,7 +40,8 @@
             align-items: center;
             justify-content: center;
            // padding: 5rem;
-            gap: 2rem;
+            gap: 3rem;
+            margin-bottom: 2rem;
             //flex-wrap: wrap;
 
             &__title {
@@ -107,11 +108,11 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: .5rem;
+            gap: 1rem;
             padding-bottom: 1rem;
 
             &__btn {
-                padding: 2rem 3rem;
+                padding: 1rem 2rem;
                 border-radius: 2rem;
                 background-color: $apple-green;
                 border: none;
@@ -252,3 +253,5 @@
   .mySwiper {
     padding: 2rem;
   }
+
+  

@@ -4,11 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { FaFileVideo } from "react-icons/fa6";
+import { FaFilePdf } from "react-icons/fa6";
 
-export default function CardContentVideo({image, title, content}) {
+export default function CardContentDocumnts({image, title, content}) {
   return (
-    <Card sx={{ maxWidth: 250 }}>
+    <Card sx={{ maxWidth: 160 }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -17,7 +17,7 @@ export default function CardContentVideo({image, title, content}) {
           alt=""
           style={{position:'relative', opacity:'1'}}
         />
-        <FaFileVideo style={{position:'absolute', top:'25%', left:'40%', fontSize:'3rem', color:'#004632', padding:'10px', backgroundColor:'#CDF273', borderRadius:'10px'}} />
+        <FaFilePdf style={{position:'absolute', top:'25%', left:'40%', fontSize:'3rem', color:'#004632', padding:'10px', backgroundColor:'#CDF273', borderRadius:'10px'}} />
         <CardContent>
           <Typography gutterBottom variant="p" component="div">
             {title}
