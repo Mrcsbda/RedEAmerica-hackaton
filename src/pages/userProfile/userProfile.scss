@@ -116,16 +116,11 @@
         padding: 0px 13px !important;
     }
 
-    &__post-icons-container {
+    &__icon-edit {
+        background-color: white;
         position: absolute;
         right: 10px;
         top: 10px;
-        display: flex;
-        gap: 10px;
-    }
-
-    &__icon-edit {
-        background-color: white;
         padding: 8px;
         border-radius: 50%;
         display: flex;
