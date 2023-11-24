@@ -60,6 +60,12 @@
         width: 100%;
     }
 
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
     &__button {
         font-family: 'Sora', sans-serif !important;
         text-transform: capitalize !important;

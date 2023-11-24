@@ -11,6 +11,7 @@ const Header = () => {
         <img className='header__logo' src="https://www.redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="logo icon" />
       </figure>
       <Link className='header__link' to="/home" >Inicio</Link>
+      <Link className='header__link' to="/home/comments/1" >Comments</Link>
       <Link to={`/home/profile/${userLogged.id}`}>
         <Avatar
           alt="Remy Sharp"
