@@ -42,7 +42,7 @@ const SignUp = () => {
 
   const handleForm = async (data) => {
     const imageFile = data.logo[0];
-    const image = await fileUpload(imageFile);
+    const image = await fileUpload(imageFile, "image");
     const newCompany = {
         ...data,
         logo: image,
