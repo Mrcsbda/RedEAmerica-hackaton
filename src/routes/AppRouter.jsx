@@ -1,24 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import PublicRoutes from './publicRoutes/PublicRoutes'
 import PrivateRoutes from './privateRoutes/PrivateRoutes'
 import Layout from '../pages/layout/Layout'
 import Home from '../pages/home/Home'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Post from '../pages/post/Post'
 import Comments from '../pages/comments/Comments'
 import DashboardAdmin from '../pages/dashboardAdmin/DashboardAdmin'
 import Login from '../pages/login/Login'
-import SignUp from '../pages/signUp/signUp'
+import SignUp from '../pages/signUp/SignUp'
 import UserProfile from '../pages/userProfile/UserProfile'
 import LandingPage from '../pages/landingPage/LandingPage'
 import Members from '../pages/members/Members'
 import AddPost from '../pages/addPost/AddPost'
 import ContactForm from '../pages/contactForm/ContactForm'
+import { setUserLogged } from '../store/slides/auth/auth'
 
 const AppRouter = () => {
     const { role, isAuthenticated } = useSelector(state => state.auth)
-    const [validateAuth, setValidateAuth] = useState(true)
+    const [validateAuth, setValidateAuth] = useState(false);
+    const dispatch = useDispatch();
+    const userSession = JSON.parse(sessionStorage.getItem("user"));
+
+    useEffect(() => {
+        if(userSession?.id){
+            setValidateAuth(true);
+            dispatch(setUserLogged(userSession));
+        }
+    }, [])
+
     return (
         <BrowserRouter>
             <Routes>

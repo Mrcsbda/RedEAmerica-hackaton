@@ -5,7 +5,7 @@ import { firebaseAuth } from "../../../firebase/firebaseConfig";
 import Swal from "sweetalert2";
 
 export const createAnCompany = (newCompany) => {
-    return async (dispatch) => {
+    return async () => {
         try {
             const { user } = await createUserWithEmailAndPassword(
                 firebaseAuth, 
@@ -42,6 +42,7 @@ export const loginWithEmailAndPassword = (loggedUser) => {
                 dispatch(setUserLogged(foundUser));
                 dispatch(setIsAuthenticated(true));
                 dispatch(setRole(foundUser.rol));
+                sessionStorage.setItem("user", JSON.stringify(foundUser));
             }else{
                 Swal.fire(
                     "Alerta",
