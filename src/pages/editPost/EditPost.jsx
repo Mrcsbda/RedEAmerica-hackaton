@@ -1,5 +1,6 @@
 import { Autocomplete, Button, TextField } from '@mui/material'
 import React from 'react'
+import { useParams } from 'react-router';
 
 const EditPost = () => {
   const { postId } = useParams()
