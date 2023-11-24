@@ -39,9 +39,9 @@
             width: 100%;
             align-items: center;
             justify-content: center;
-            padding: 5rem;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+           // padding: 5rem;
+            gap: 2rem;
+            //flex-wrap: wrap;
 
             &__title {
                 color: $night;
@@ -166,6 +166,11 @@
                 top: 280px;
                 right: 60px;
             }
+            &__argentina {
+                position: absolute;
+                top: 570px;
+                right: 70px;
+            }
             &__méxico {
                 position: absolute;
                 top: 110px;
@@ -196,6 +201,54 @@
                 top: 570px;
                 left: 70px;
             }
+           
         }
-    }
+    
+    &__lastContent {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+        &__subTitle {
+            font-size: 1.2rem;
+        }
+        &__btn {
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-end;
+            font-weight: bold;
+        }
+    }}
 }
+
+
+
+.swiper {
+    width: 1200px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .swiper-slide {
+    //text-align: center;
+   // font-size: 18px;
+    background: #fff;
+    height: calc((100% - 30px) / 2) !important;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-pagination .custom-bullet {
+    background-color: $mindaro !important;
+  }
+  
+  .swiper-pagination .swiper-pagination-bullet-active.custom-bullet {
+    background-color: $racing-green !important;
+  }
+  .mySwiper {
+    padding: 2rem;
+  }

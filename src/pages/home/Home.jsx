@@ -6,7 +6,14 @@ import './home.scss'
 import { useNavigate } from 'react-router-dom';
 import { BiSolidCategory } from "react-icons/bi";
 import CardContentVideo from '../../components/cardContentVideo/CardContentVideo';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
+//import './styles.css';
+// import required modules
+import { Grid, Pagination } from 'swiper/modules';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,14 +61,82 @@ const Home = () => {
 
   const [searchValue, setSearchValue] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
   const [visibleCategories, setVisibleCategories] = useState(10);
   const navigate = useNavigate();
 
-  const post = {
-    title: "titulo",
-    category: "informes de gestión",
+  const post = [
+    {
+      id: "1",
+      title: "Las Comunidades Sostenibles, nuestro desafío",
+      content: "contenido",
+      format: "video",
+      idCompany: "1",
+      timeStamp: "2023",
+      country: "colombia",
+      contentType: "",
+      categoryId: "informes de gestión",
+      urlFile: "",
+      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
 
-  }
+    },
+    {
+      id: "2",
+      title: "Las Comunidades Sostenibles, nuestro desafío",
+      content: "contenido",
+      format: "video",
+      idCompany: "1",
+      timeStamp: "2023",
+      country: "colombia",
+      contentType: "",
+      categoryId: "informes de gestión",
+      urlFile: "",
+      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
+
+    },
+    {
+      id: "3",
+      title: "Las Comunidades Sostenibles, nuestro desafío",
+      content: "contenido",
+      format: "video",
+      idCompany: "1",
+      timeStamp: "2023",
+      country: "colombia",
+      contentType: "",
+      categoryId: "informes de gestión",
+      urlFile: "",
+      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
+
+    },
+    {
+      id: "4",
+      title: "Las Comunidades Sostenibles, nuestro desafío",
+      content: "contenido",
+      format: "video",
+      idCompany: "1",
+      timeStamp: "2023",
+      country: "colombia",
+      contentType: "",
+      categoryId: "informes de gestión",
+      urlFile: "",
+      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
+
+    },
+    {
+      id: "5",
+      title: "Las Comunidades Sostenibles, nuestro desafío",
+      content: "contenido",
+      format: "video",
+      idCompany: "1",
+      timeStamp: "2023",
+      country: "colombia",
+      contentType: "",
+      categoryId: "informes de gestión",
+      urlFile: "",
+      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
+
+    }
+  ]
 
   const categories = [
     "Informes de gestión",
@@ -94,6 +169,7 @@ const Home = () => {
     'ecuador',
     'perú',
     'chile',
+    'argentina'
   ];
 
 
@@ -108,6 +184,18 @@ const Home = () => {
     setVisibleCategories(categories.length);
   };
 
+  const handleCountryClick = (country) => {
+    navigate(`/${country}`);
+    setSelectedCountry(country);
+    console.log(selectedcountry);
+  };
+
+  const handleSearchClick = (event) => {
+    if (event.key === 'Enter') {
+      console.log('Búsqueda realizada:', searchValue);
+      // navigate(`/${searchValue}`);
+    }
+  };
 
   // const filteredPosts = post.filter((post) => {
   //   return selectedCategory === "all" || post.category === selectedCategory;
@@ -127,12 +215,7 @@ const Home = () => {
               inputProps={{ 'aria-label': 'search' }}
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  // Realiza la búsqueda o la acción deseada aquí con el valor de searchValue
-                  console.log('Búsqueda realizada:', searchValue);
-                }
-              }}
+              onKeyDown={handleSearchClick}
             />
           </Search>
         </article>
@@ -162,32 +245,68 @@ const Home = () => {
       {/*****************Seccion tres*****************/}
       <section className='home__section__searchByCountry'>
         <h3 className='home__section__searchByCountry__title'>Explora por experiencias en nuestros paises miembros</h3>
-        <div className='home__article__searchByCountry'  style={{position:'relative'}}>
-         <figure className='home__article__searchByCountry__figure'>
-          <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1700776369/h6ml7abvbqx3mehdyq58.gif" alt=""/>
-         </figure>
-         {countries.map((country) => (
-           <button key={country} className={`home__article__searchByCountry__${country.replace(/\s/g, '')}`}>
-            {country.toUpperCase()}
-          </button>
-        ))}
-          <div>
-            <CardContentVideo/>
-          </div>
+        <div className='home__article__searchByCountry' style={{ position: 'relative' }}>
+          <figure className='home__article__searchByCountry__figure'>
+            <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1700776369/h6ml7abvbqx3mehdyq58.gif" alt="" />
+          </figure>
+          {countries.map((country) => (
+            <button key={country} className={`home__article__searchByCountry__${country.replace(/\s/g, '')}`} onClick={() => handleCountryClick(country)}>
+              {country.toUpperCase()}
+            </button>
+          ))}
         </div>
-       
       </section>
 
-           {/*****************Seccion cuatro*****************/}
-           <section className='home__section__lastContent'>
+      {/*****************Seccion cuatro*****************/}
+      <section className='home__section__lastContent'>
         <h3 className='home__section__lastContent__title'>Accede a nuestro contenido más reciente...</h3>
         <div className='home__article__lastContent'>
-          <h5>Ultimos videos</h5>
-          <div>
-            <CardContentVideo/>
-          </div>
+
+          <h5 className='home__article__lastContent__subTitle'>Ultimas publicaciones en video</h5>
+          <hr />
+
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={30}
+            pagination={{
+              clickable: true,
+              renderBullet: function (index, className) {
+                return `<span class="${className}" style="background-color: #004632;"></span>`;
+              },
+            }}
+            modules={[Grid, Pagination]}
+            className="mySwiper"
+            breakpoints={{
+              768: {
+                slidesPerView: 4,
+              },
+              556: {
+                slidesPerView: 3,
+              },
+              0: {
+                slidesPerView: 1,
+              },
+            }}
+          >
+            {Object.keys(post).map((key) => (
+
+              <SwiperSlide key={key}>
+                <CardContentVideo key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+              </SwiperSlide>
+
+            ))}
+          </Swiper>
+          <article className='home__article__lastContent__btn'>
+          <bottom>Ver todo el contenido...</bottom>
+
+          </article>
+
         </div>
-       
+
+      </section>
+
+      <section>
+
       </section>
 
     </>
