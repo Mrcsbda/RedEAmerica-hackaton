@@ -7,7 +7,9 @@ import { BiEdit } from "react-icons/bi";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCompanyInfo } from '../../services/company';
-import { getPosts } from '../../services/posts';
+import { deletePostsDB, getPosts } from '../../services/posts';
+import { MdDelete } from "react-icons/md";
+import Swal from 'sweetalert2';
 
 const UserProfile = () => {
   const navigate = useNavigate()
@@ -15,11 +17,12 @@ const UserProfile = () => {
   const { memberId } = useParams()
   const { userLogged } = useSelector(state => state.auth)
   const [posts, setPosts] = useState([])
+  const [deletePost, setDeletePost] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
     getData()
-  }, [memberId])
+  }, [memberId, deletePost])
 
   const getData = async () => {
     const dataCompany = await getCompanyInfo(memberId)
@@ -37,6 +40,37 @@ const UserProfile = () => {
 
   const navigatePost = (id) => {
     navigate(`/home/post/${id}`)
+  }
+
+  const detelePost = async (id) => {
+    Swal.fire({
+      title: '¿Estás seguro de eliminar este post?',
+      text: "No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#307B30',
+      cancelButtonColor: '#01140E',
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar'
+  }).then(async (result) => {
+      if (result.isConfirmed) {
+          const resp = await deletePostsDB(id)
+          if (resp) {
+              setDeletePost(!deletePost)
+              Swal.fire(
+                  'Listo!',
+                  'La historia ha sido eliminada.',
+                  'success'
+              )
+          } else {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: 'Hubo un error al eliminar la publicación, vuelve a intentarlo!',
+              })
+          }
+      }
+  })
   }
   return (
     <>
@@ -82,8 +116,13 @@ const UserProfile = () => {
                       <Card key={index} sx={{ width: 345 }} className='user-profile__post'>
                         {
                           memberId === userLogged.id && (
-                            <div className='user-profile__icon-edit' onClick={() => navigateEditPost(post.id)}>
-                              <BiEdit />
+                            <div className='user-profile__post-icons-container'>
+                              <div className='user-profile__icon-edit' onClick={() => navigateEditPost(post.id)}>
+                                <BiEdit />
+                              </div>
+                              <div className='user-profile__icon-edit' onClick={() => detelePost(post.id)}>
+                                <MdDelete />
+                              </div>
                             </div>
                           )
                         }
