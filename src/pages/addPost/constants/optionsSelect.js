@@ -1,17 +1,3 @@
-const countryOptions = [
-    {id:1, country: 'Argentina'},
-    {id:2, country: 'Chile'},
-    {id:3, country: 'Costa Rica'},
-    {id:4, country: 'Guatemala'},
-    {id:5, country: 'Mexico'},
-    {id:6, country: 'Venezuela'},
-    {id:7, country: 'Brazil'},
-    {id:8, country: 'Colombia'},
-    {id:9, country: 'Ecuador'},
-    {id:10, country: 'Honduras'},
-    {id:11, country: 'Peru'},
-]
-
 const formatOptions = [
     {id: 1, format: 'pdf'},
     {id: 2, format: 'video'},
@@ -30,4 +16,4 @@ const categoriesOptions = [
 ]
 
 
-export {countryOptions, formatOptions, categoriesOptions}
+export {formatOptions, categoriesOptions}

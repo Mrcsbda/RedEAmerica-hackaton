@@ -7,12 +7,14 @@ import { BiEdit } from "react-icons/bi";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCompanyInfo } from '../../services/company';
+import { getPosts } from '../../services/posts';
 
 const UserProfile = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState({})
   const { memberId } = useParams()
   const { userLogged } = useSelector(state => state.auth)
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -20,8 +22,10 @@ const UserProfile = () => {
   }, [])
 
   const getData = async () => {
-    const data = await getCompanyInfo(memberId)
-    setUser(data)
+    const dataCompany = await getCompanyInfo(memberId)
+    const dataPosts = await getPosts(memberId)
+    setPosts(dataPosts)
+    setUser(dataCompany)
   }
   const navigateToContactForm = () => {
     navigate(`/home/contact/${memberId}`)
@@ -72,138 +76,36 @@ const UserProfile = () => {
             <section className='user-profile__posts'>
               <h1 className='user-profile__posts-title'>Publicaciones de {user.name}</h1>
               <div className='user-profile__posts-container'>
-                <Card sx={{ width: 345 }} className='user-profile__post'>
-                  {
-                    memberId === userLogged.id && (
-                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
-                        <BiEdit />
-                      </div>
+                {
+                  posts.length > 0 ? (
+                    posts?.map((post, index) => (
+                      <Card key={index} sx={{ width: 345 }} className='user-profile__post'>
+                        {
+                          memberId === userLogged.id && (
+                            <div className='user-profile__icon-edit' onClick={() => navigateEditPost(post.id)}>
+                              <BiEdit />
+                            </div>
+                          )
+                        }
+                        <CardMedia
+                          sx={{ height: 140 }}
+                          image={post.imagePost}
+                        />
+                        <CardContent>
+                          <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                            {post.title}
+                          </Typography>
+                        </CardContent>
+                        <CardActions>
+                          <Button onClick={() => navigatePost(post.id)} size="small" className='user-profile__post-button'>Ver más</Button>
+                        </CardActions>
+                      </Card>
+                    ))
+                  ) :
+                    (
+                      <p className='user-profile__no-posts'>{user.name} No ha publicado nada aún.</p>
                     )
-                  }
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
-                      Lizard
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
-                  </CardActions>
-                </Card>
-                <Card sx={{ width: 345 }} className='user-profile__post'>
-                  {
-                    memberId === userLogged.id && (
-                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
-                        <BiEdit />
-                      </div>
-                    )
-                  }
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
-                      Lizard
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
-                  </CardActions>
-                </Card>
-                <Card sx={{ width: 345 }} className='user-profile__post'>
-                  {
-                    memberId === userLogged.id && (
-                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
-                        <BiEdit />
-                      </div>
-                    )
-                  }
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
-                      Lizard
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
-                  </CardActions>
-                </Card>
-                <Card sx={{ width: 345 }} className='user-profile__post'>
-                  {
-                    memberId === userLogged.id && (
-                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
-                        <BiEdit />
-                      </div>
-                    )
-                  }
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
-                      Lizard
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
-                  </CardActions>
-                </Card>
-                <Card sx={{ width: 345 }} className='user-profile__post'>
-                  {
-                    memberId === userLogged.id && (
-                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
-                        <BiEdit />
-                      </div>
-                    )
-                  }
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
-                      Lizard
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
-                  </CardActions>
-                </Card>
-                <Card sx={{ width: 345 }} className='user-profile__post'>
-                  {
-                    memberId === userLogged.id && (
-                      <div className='user-profile__icon-edit' onClick={() => navigateEditPost(1)}>
-                        <BiEdit />
-                      </div>
-                    )
-                  }
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
-                    title="green iguana"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
-                      Lizard
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button onClick={() => navigatePost(1)} size="small" className='user-profile__post-button'>Ver más</Button>
-                  </CardActions>
-                </Card>
+                }
               </div>
             </section>
           </article>

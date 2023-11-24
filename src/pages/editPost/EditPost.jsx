@@ -2,6 +2,7 @@ import { Autocomplete, Button, TextField } from '@mui/material'
 import React from 'react'
 
 const EditPost = () => {
+  const { postId } = useParams()
   const categories = [
     "categoria"
   ];
@@ -27,7 +28,7 @@ const EditPost = () => {
             disableCloseOnSelect
             options={categories}
             renderInput={(params) => (
-              <TextField {...params} label="Categorias" variant="standard" className='contact-form__input'/>
+              <TextField {...params} label="Categorias" variant="standard" className='contact-form__input' />
             )}
           />
           <Button variant="contained" className='contact-form__button' type="submit">Guardar Cambios</Button>
