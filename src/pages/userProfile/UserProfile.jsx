@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./userProfile.scss"
-import { Avatar, Button } from '@mui/material'
+import { Avatar, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { CiLink } from "react-icons/ci";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -59,8 +59,100 @@ const UserProfile = () => {
               <h2 className='user-profile__subtitle'>¿Quieres colaborar con nosotros?</h2>
               <Button className='user-profile__button' variant="contained" onClick={navigateToContactForm}>¡Contactanos!</Button>
             </section>
-            <section>
-              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <section className='user-profile__posts'>
+              <h1 className='user-profile__posts-title'>Publicaciones de {user.name}</h1>
+              <div className='user-profile__posts-container'>
+                <Card sx={{ width: 345 }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                      Lizard
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ width: 345 }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                      Lizard
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ width: 345 }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                      Lizard
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ width: 345 }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                      Lizard
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ width: 345 }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                      Lizard
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                  </CardActions>
+                </Card>
+                <Card sx={{ width: 345 }}>
+                  <CardMedia
+                    sx={{ height: 140 }}
+                    image="https://remarkableplaces.travel/wp-content/uploads/2021/01/shutterstock_759567577-2048x1150.jpg"
+                    title="green iguana"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className='user-profile__post-title'>
+                      Lizard
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" className='user-profile__post-button'>Ver más</Button>
+                  </CardActions>
+                </Card>
+              </div>
             </section>
           </article>
         )
