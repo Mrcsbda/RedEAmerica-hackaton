@@ -1,0 +1,67 @@
+@import "../../assets/styles/variables.scss";
+
+.comments {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &__container {
+        display: grid;
+        grid-template-columns: auto auto;
+        place-items: start;
+        align-content: center;
+    }
+
+    &__cards-container {
+        width: 800px;
+        border-top: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+        border-bottom: none;
+        min-height: calc(100vh - 67px);
+        max-height: 100%;
+        gap: 10px;
+    }
+
+    &__header {
+        span {
+            font-family: 'Sora', sans-serif !important;
+            font-size: 18px !important;
+        }
+    }
+
+    &__text {
+            font-family: 'Sora', sans-serif !important;
+    }
+
+    &__input-container {
+        height: calc(100vh - 67px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+        position: sticky;
+        gap: 15px;
+        width: 300px;
+        top: 67px;
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: 600;
+        color: $night;
+    }
+
+    &__input {
+        width: 100%;
+    }
+
+    &__button {
+        font-family: 'Sora', sans-serif !important;
+        text-transform: capitalize !important;
+    }
+}

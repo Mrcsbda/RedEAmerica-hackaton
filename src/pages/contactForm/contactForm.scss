@@ -31,6 +31,9 @@
 
     &__input {
         width: 100%;
+        input, label {
+            font-family: 'Sora', sans-serif !important;
+        }
     }
 
     &__button {
