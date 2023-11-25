@@ -1,4 +1,4 @@
-import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, query, where, getDocs, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firebaseDB } from '../firebase/firebaseConfig.js';
 import Swal from "sweetalert2";
 
@@ -49,6 +49,34 @@ export const deletePostsDB = async (id) => {
     } catch (error) {
         console.log(error)
         return false
+    }
+}
+
+export const getPostById = async (idPost) => {
+    try {
+        const postRef = doc(firebaseDB, "posts", idPost);
+        const post = await getDoc(postRef);
+        if(post.exists()){
+            return {
+                id: post.id,
+                ...post.data()
+            };
+        }else{
+            return null;
+        }
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export const updatePost = async (idPost, updateInfo) => {
+    try {
+        const postRef = doc(firebaseDB, "posts", idPost);
+        const response = await updateDoc(postRef, updateInfo);
+        return response;
+    } catch (error) {
+        console.log(error)
     }
 }
 
