@@ -1,18 +1,23 @@
-import {Box, Button, Container, FormControl, Input, InputLabel, MenuItem, Select, TextField,} from "@mui/material";
+import {Alert, Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField,} from "@mui/material";
 import {categoriesOptions, formatOptions} from "./constants/optionsSelect.js";
 import {UploadFile, Add} from "@mui/icons-material";
 import {useForm} from "react-hook-form";
 import {useAddPost} from "../../hooks/addPost/useAddPost.js";
 import {useSelector} from "react-redux";
+import {validationFormPost} from "./validateForm.js";
+import {optionsFormValidate} from "./constants/optionsValidateForm.js";
+import ModalError from "../../components/ModalError/ModalError.jsx";
 
 const AddPost = () => {
 
-    const {userLogged} = useSelector(state => state.auth)
+    const {userLogged} = useSelector(state => state.auth);
 
     const {
         register,
         handleSubmit,
-        watch
+        watch,
+        formState: { errors},
+        setValue
     } = useForm()
 
     const {typeFormat, category} = watch()
@@ -29,6 +34,9 @@ const AddPost = () => {
         fileInputRef
     } = useAddPost(userLogged.id)
 
+    const errorsList = validationFormPost(errors)
+    console.log(errorsList)
+
 
     return (
         <Container maxWidth='xl' sx={{
@@ -41,20 +49,21 @@ const AddPost = () => {
             backgroundColor: '#fff',
             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.4)'
         }}>
+            <ModalError errors={errorsList} />
             <form style={{display: 'flex', gap: 25, flexDirection: 'column', width: '100%', position: 'relative'}}
                   onSubmit={handleSubmit(handleSendPost)}>
                 <img src="https://redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="logo" style={{width: '100%', height: '100px'}}/>
                 <TextField
                     label='Titulo'
                     variant='outlined' sx={{width: '100%'}}
-                    {...register('title')}
+                    {...register('title', optionsFormValidate.optTittle)}
                 />
                 <TextField
                     label='Contenido'
                     multiline rows={4}
                     variant='outlined'
                     sx={{width: '100%'}}
-                    {...register('Content')}
+                    {...register('content', optionsFormValidate.optContent)}
                 />
                 <Box sx={{display: 'flex', gap: 3}}>
                     <FormControl fullWidth>
@@ -63,7 +72,10 @@ const AddPost = () => {
                             labelId="select-label"
                             label='Tipo de formato'
                             value={typeFormat || ''}
-                            {...register('typeFormat')}
+                            {...register('typeFormat', optionsFormValidate.optTypeFormat)}
+                            onChange={(e) =>{
+                                setValue('typeFormat', e.target.value, {shouldValidate: true})
+                            }}
                         >
                             <MenuItem disabled value=''>
                                 <em>Escoge una opcion</em>
@@ -84,7 +96,10 @@ const AddPost = () => {
                         labelId="select-label"
                         label='Categoria'
                         value={category || ''}
-                        {...register('category')}
+                        {...register('category', optionsFormValidate.optCategory)}
+                        onChange={(e) =>{
+                            setValue('category', e.target.value, {shouldValidate: true})
+                        }}
                     >
                         <MenuItem disabled value=''>
                             <em>Escoge una opcion</em>
