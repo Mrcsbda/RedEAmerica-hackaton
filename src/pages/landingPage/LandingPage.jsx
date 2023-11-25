@@ -109,6 +109,20 @@ const LandingPage = () => {
           </div>
         </div>
       </main>
+      <footer>
+        <div className="logo">
+            <img src="https://www.redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="Logo"/>
+        </div>
+        <div className="copyright">
+            <p>© 2023 RedEAmérica. Todos los derechos reservados.</p>
+        </div>
+        <div className="social-media">
+            <a href="https://www.instagram.com/redeamerica/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.facebook.com/redeamerica/" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://www.linkedin.com/company/redeamerica/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="mailto:info@redeamerica.org" rel="noreferrer">Email</a>
+        </div>
+    </footer>
     </div>)
 }
 
