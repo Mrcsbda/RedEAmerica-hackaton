@@ -206,6 +206,11 @@ const Home = () => {
     console.log(selectedContent);
   };
 
+  const handleGoToPost = (post) => {
+    navigate(`/home/post/${post}`);
+    console.log(post);
+  };
+
 
   return (
     <>
@@ -295,7 +300,9 @@ const Home = () => {
             {Object.keys(post).map((key) => (
 
               <SwiperSlide key={key}>
-                <CardContentVideo key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+                <div onClick={() => handleGoToPost(post[key].id)}>
+                  <CardContentVideo key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+                </div>
               </SwiperSlide>
 
             ))}
@@ -342,7 +349,9 @@ const Home = () => {
             {Object.keys(post).map((key) => (
 
               <SwiperSlide key={key}>
-                <CardContentPodcast key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+                <div onClick={() => handleGoToPost(post[key].id)}>
+                  <CardContentPodcast key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+                </div>
               </SwiperSlide>
 
             ))}
@@ -389,7 +398,9 @@ const Home = () => {
             {Object.keys(post).map((key) => (
 
               <SwiperSlide key={key}>
-                <CardContentDocumnts key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
+                <div onClick={() => handleGoToPost(post[key].id)}>
+                  <CardContentDocumnts key={key} title={post[key].title} image={post[key].image} content={post[key].content} onClick={() => handleGoToPost(post[key].id)} />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

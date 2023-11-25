@@ -323,17 +323,32 @@ const FilterPost = () => {
         return titleMatches || contentMatches || categoryMatches || countryMatches || contentTypeMatches;
     });
 
-
+    const handleGoToPost = (post) => {
+        navigate(`/home/post/${post}`);
+        console.log(post);
+    };
 
     const renderCard = (post) => {
 
         switch (post.contentType) {
             case 'video':
-                return <CardContentVideo image={post.image} title={post.title} content={post.content} />;
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentVideo image={post.image} title={post.title} content={post.content} />
+                    </div>
+                );
             case 'podcast':
-                return <CardContentPodcast image={post.image} title={post.title} content={post.content} />;
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentPodcast image={post.image} title={post.title} content={post.content} />
+                    </div>
+                );
             case 'documento':
-                return <CardContentDocumnts image={post.image} title={post.title} content={post.content} />;
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentDocumnts image={post.image} title={post.title} content={post.content} />
+                    </div>
+                );
             default:
                 return null;
         }
