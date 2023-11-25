@@ -24,7 +24,7 @@ const HeaderLanding = () => {
                 <li><a href="#">Contáctanos</a></li>
             </ul>
         </nav>
-        <button onClick={() => handleContentClick('signup')}>Iniciar sesión</button>
+        <button onClick={() => handleContentClick('login')}>Iniciar sesión</button>
     </header>
     );
 };
