@@ -1,0 +1,197 @@
+@import '../../assets/styles/universal.scss';
+@import '../../assets/styles/variables.scss';
+
+/* Hero */
+.hero {
+    position: relative;
+}
+
+.hero img {
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    left: 180px;
+    top: 30%;
+    background-color: rgba(0, 0, 0, 0.29);
+    box-shadow: -5px 5px 12px 0px rgba(24, 24, 24, 0.25) inset;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    color: white;
+    padding: 50px;
+    width: 550px;
+    text-align: center;
+}
+
+.hero-text h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+// 
+
+.quienes-somos,.informacion,.contacto {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 5%;
+}
+
+.texto p{
+    line-height: 1.5;
+    text-align: justify;
+}
+.texto,
+.imagen {
+    width: 40%;
+
+}
+
+.texto h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.texto p {
+    margin-top: 20px;
+    
+}
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.invitacion {
+    text-align: center;
+    padding: 40px;
+    background-color: #dbebb7;
+}
+
+.invitacion h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.invitacion p {
+    font-size: 18px;
+    font-weight: 300;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.invitacion button {
+    margin: 10px 0   ;
+}
+
+.caracteristicas {
+    text-align: center;
+    padding: 40px 0 ;
+    background-color: #dbebb7;
+    
+}
+
+.caracteristicas h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+.caracteristica img{
+    max-width: 60px;
+    min-height: 50px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.caracteristica p {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.formulario {
+    width: 33%; /* Ajusta este valor según tus necesidades */
+    border: 1px solid #FBFBFB;
+    box-shadow: 1px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 50px;
+}
+
+.formulario form {
+    color: var(--text-secondary-grey-2, #6F7482);
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+
+}
+
+.input-group input, .input-group textarea {
+    color: var(--text-primary-basic, #3B4256);
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formulario button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra el contenido verticalmente */
+    padding: 20px 50px;
+    background: #01140E;
+    color: #ffffff; /* Cambia el color de la letra a blanco */
+}
+
+.logo img {
+    width: 100px; /* Ajusta este valor según tus necesidades */
+}
+
+.copyright p {
+    margin: 0;
+}
+
+.social-media a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #ffffff; /* Cambia el color de la letra a blanco */
+}
+
+.social-media a:hover {
+    color: #33B249; /* Cambia el color de la letra a verde */
+}
