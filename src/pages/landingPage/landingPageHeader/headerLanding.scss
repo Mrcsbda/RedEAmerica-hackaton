@@ -1,0 +1,88 @@
+@import '../../../assets/styles/universal.scss';
+@import '../../../assets/styles/variables.scss';
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    font-family: 'Sora', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 10%;
+    background-color:$night;
+    height: 80px;
+    color: white;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.logo img {
+    width: 150px;
+    height: 60px;
+
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    list-style: none;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+button {
+    background-color: #33B249;
+    color: #fff;
+    padding: 9px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #2F974B;
+}
+
+@media (max-width: 700px) {
+    header {
+        display: block;
+    }
+
+    .logo,
+    nav,
+    button {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul {
+        margin: 20px 0;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 10px;
+    }
+
+    header button {
+        margin: 20px;
+    }
+}
