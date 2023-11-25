@@ -47,7 +47,7 @@ const LandingPage = () => {
           </p>
           <button onClick={() => handleContentClick('signup')}>Registrarse</button>
         </div>
-        <div className="informacion">
+        <div className="informacion" id="info">
           <div className="imagen">
             <img src="../src/assets/img/compartiendo en la naturaleza.jpg" alt="Imagen de información" />
           </div>
@@ -79,7 +79,7 @@ const LandingPage = () => {
           </div>
 
         </div>
-        <div className="contacto">
+        <div className="contacto" id='contact'>
           <div className="texto">
             <h2>¡Contáctanos!</h2>
             <p>Estamos emocionados de saber de ti.</p>
