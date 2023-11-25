@@ -46,6 +46,16 @@ const LandingPage = () => {
             Juntos, Hacemos Posible el Cambio en Nuestra Región.
         </p>
         <button onClick={() => handleContentClick('signup')}>Registrarse</button>
+        </div>
+        <div className="informacion">
+        <div className="imagen">
+            <img src="../src/assets/img/compartiendo en la naturaleza.jpg" alt="Imagen de información" />
+        </div>
+        <div className="texto">
+            <h2>Conectando Saberes para un Impacto Duradero</h2>
+            <p>Nos enorgullece ofrecer a los miembros de la Red, compuesta por las organizaciones empresariales más influyentes de América Latina, un espacio exclusivo. Aquí, podrán compartir conocimientos prácticos, perspectivas enriquecedoras y experiencias diversas relacionadas con la inversión social privada.</p>
+            <p>Facilitamos la co-creación y la colaboración al brindar oportunidades para formar alianzas de alto impacto. Creemos en la fuerza de la colaboración para abordar desafíos complejos y generar soluciones innovadoras que beneficien a nuestras comunidades.</p>
+        </div>
     </div>
       </main>
     </div>)
