@@ -16,6 +16,7 @@ import Members from '../pages/members/Members'
 import AddPost from '../pages/addPost/AddPost'
 import ContactForm from '../pages/contactForm/ContactForm'
 import { setIsAuthenticated, setRole, setUserLogged } from '../store/slides/auth/auth'
+import FilterPost from '../pages/filterPosts/FilterPost'
 
 const AppRouter = () => {
     const { role, isAuthenticated } = useSelector(state => state.auth)
@@ -24,7 +25,7 @@ const AppRouter = () => {
     const userSession = JSON.parse(sessionStorage.getItem("user"));
 
     useEffect(() => {
-        if(userSession?.id){
+        if (userSession?.id) {
             dispatch(setUserLogged(userSession));
             dispatch(setIsAuthenticated());
             dispatch(setRole(userSession.rol));
@@ -59,6 +60,11 @@ const AppRouter = () => {
                                             <Route path='add-post' element={<AddPost />} />
                                             <Route path='profile' element={<UserProfile />} />
                                             <Route path='members' element={<Members />} />
+                                            <Route path='filter' element={<FilterPost />} />
+                                            <Route path="filter">
+                                                <Route path=":filterAplied" element={<FilterPost />} />
+                                            </Route>
+
                                         </Route>
                                     )
                                 }
