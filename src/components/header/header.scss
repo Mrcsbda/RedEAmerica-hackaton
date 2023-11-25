@@ -1,0 +1,32 @@
+@import "../../assets/styles/variables.scss";
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: $night;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    &__logo-container {
+        display: flex;
+        height: max-content;
+    }
+
+    &__logo {
+        width: 4rem;
+    }
+
+    &__link {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    &__avatar {
+        background-color: white;
+    }
+}

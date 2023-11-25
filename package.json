@@ -12,10 +12,10 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "@reduxjs/toolkit": "^1.9.7",
     "firebase": "^10.6.0",
-    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
@@ -24,7 +24,8 @@
     "react-router-dom": "^6.20.0",
     "redux-thunk": "^2.4.2",
     "sass": "^1.69.5",
-    "sweetalert2": "^11.10.1"
+    "sweetalert2": "^11.10.1",
+    "swiper": "^11.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
