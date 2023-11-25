@@ -37,3 +37,40 @@
     font-weight: 300;
     line-height: 1.5;
 }
+
+// 
+.quienes-somos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px 5%;
+}
+
+.texto p{
+    /* font-size: 20px; */
+    /* font-weight: 300; */
+    line-height: 1.5;
+    text-align: justify;
+}
+.texto,
+.imagen {
+    width: 40%;
+
+}
+
+.texto h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.texto p {
+    margin-top: 20px;
+}
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
