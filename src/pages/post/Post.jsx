@@ -19,7 +19,9 @@ const Post = () => {
                         financiarán con donaciones privadas, brindarán a los estudiantes
                         la oportunidad de acceder a una educación de alta calidad en el Tecnológico de Monterrey.
                     </Typography>
-                    <Button variant='contained' sx={{mt: 3}}>Crear comentario</Button>
+                    <Link to='/home/comments/12'>
+                        <Button variant='contained' sx={{mt: 3}}>Crear comentario</Button>
+                    </Link>
                 </Box>
             </Box>
             <Box sx={{width: '50%', pt: 3}}>
@@ -55,7 +57,7 @@ const Post = () => {
                         value={3}
                     />
                     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', pt:5}}>
-                        <Link to='/profile/1'>
+                        <Link to='/home/profile/1'>
                             <Button sx={{fontSize: 20}}>Ver mas posts</Button>
                         </Link>
                         <SwipeRight sx={{fontSize: 80}} />
