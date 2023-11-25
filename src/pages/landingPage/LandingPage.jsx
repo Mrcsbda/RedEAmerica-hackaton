@@ -40,6 +40,13 @@ const LandingPage = () => {
             <img src="../src/assets/img/amigodNaturaleza.jpg" alt="Imagen de Quiénes Somos" />
           </div>
         </div>
+        <div className="invitacion">
+        <h2>Únete a la Red, Únete a la Transformación</h2>
+        <p>Regístrate ahora y sé parte activa de la transformación educativa y social en América Latina. <br/>
+            Juntos, Hacemos Posible el Cambio en Nuestra Región.
+        </p>
+        <button onClick={() => handleContentClick('signup')}>Registrarse</button>
+    </div>
       </main>
     </div>)
 }
