@@ -169,3 +169,29 @@
     cursor: pointer;
 }
 
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra el contenido verticalmente */
+    padding: 20px 50px;
+    background: #01140E;
+    color: #ffffff; /* Cambia el color de la letra a blanco */
+}
+
+.logo img {
+    width: 100px; /* Ajusta este valor según tus necesidades */
+}
+
+.copyright p {
+    margin: 0;
+}
+
+.social-media a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #ffffff; /* Cambia el color de la letra a blanco */
+}
+
+.social-media a:hover {
+    color: #33B249; /* Cambia el color de la letra a verde */
+}
