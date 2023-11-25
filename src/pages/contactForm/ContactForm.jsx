@@ -3,7 +3,7 @@ import "./contactForm.scss"
 import { Button, TextField } from '@mui/material'
 import { getCompanyInfo } from '../../services/company'
 import { useParams } from 'react-router'
-import { useForm } from 'react-hook-form'
+
 const ContactForm = () => {
     const [user, setUser] = useState({})
     const { memberId } = useParams()
