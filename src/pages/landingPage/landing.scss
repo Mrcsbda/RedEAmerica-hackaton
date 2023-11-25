@@ -39,7 +39,7 @@
 
 // 
 
-.quienes-somos,.informacion {
+.quienes-somos,.informacion,.contacto {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -129,5 +129,43 @@
 .caracteristica p {
     font-size: 17px;
     font-weight: 600;
+}
+
+.formulario {
+    width: 33%; /* Ajusta este valor según tus necesidades */
+    border: 1px solid #FBFBFB;
+    box-shadow: 1px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 50px;
+}
+
+.formulario form {
+    color: var(--text-secondary-grey-2, #6F7482);
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+
+}
+
+.input-group input, .input-group textarea {
+    color: var(--text-primary-basic, #3B4256);
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formulario button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
