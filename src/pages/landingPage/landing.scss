@@ -97,3 +97,37 @@
     margin: 10px 0   ;
 }
 
+.caracteristicas {
+    text-align: center;
+    padding: 40px 0 ;
+    background-color: #dbebb7;
+    
+}
+
+.caracteristicas h2 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+.caracteristica img{
+    max-width: 60px;
+    min-height: 50px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.caracteristica p {
+    font-size: 17px;
+    font-weight: 600;
+}
+
