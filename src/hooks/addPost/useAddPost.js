@@ -51,9 +51,15 @@ const useAddPost = (idUser) => {
                 "error"
             );
         }else {
+            let urlRecurs = null
             const formatRecurs = recurs.type.split('/');
-            const imagePost =await fileUpload(postImage, 'image')
-            const urlRecurs = await fileUpload(recurs, formatRecurs[0]);
+            const imagePost =await fileUpload(postImage, 'image');
+
+            if (formatRecurs[0] === 'application'){
+                urlRecurs = await fileUpload(recurs, 'raw');
+            }else {
+                urlRecurs= await fileUpload(recurs, formatRecurs[0]);
+            }
             const newPost = {
                 ...data,
                 userId: idUser,
