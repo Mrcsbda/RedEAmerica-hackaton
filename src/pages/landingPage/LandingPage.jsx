@@ -79,7 +79,35 @@ const LandingPage = () => {
           </div>
 
         </div>
-        
+        <div className="contacto">
+          <div className="texto">
+            <h2>¡Contáctanos!</h2>
+            <p>Estamos emocionados de saber de ti.</p>
+            <p>Si tienes alguna pregunta, comentario o simplemente deseas conectarte con nosotros, completa el formulario a continuación.</p>
+            <p>Estamos aquí para ayudarte y colaborar contigo en la transformación educativa.</p>
+          </div>
+          <div className="formulario">
+            <form>
+              <div className="input-group">
+                <label htmlFor="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Andres Briñez" required />
+              </div>
+              <div className="input-group">
+                <label htmlFor="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" placeholder="brinezlopez08@gmail.com" required />
+              </div>
+              <div className="input-group">
+                <label htmlFor="motivo">Motivo del Contacto</label>
+                <input type="text" id="motivo" name="motivo" placeholder="Consulta General" required />
+              </div>
+              <div className="input-group">
+                <label htmlFor="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" placeholder="Hola!!" required></textarea>
+              </div>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+        </div>
       </main>
     </div>)
 }
