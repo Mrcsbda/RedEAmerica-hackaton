@@ -77,7 +77,7 @@ const Home = () => {
       idCompany: "1",
       timeStamp: "2023",
       country: "colombia",
-      contentType: "",
+      contentType: "podcast",
       categoryId: "informes de gestión",
       urlFile: "",
       image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
@@ -178,7 +178,7 @@ const Home = () => {
 
 
   const handleCategoryClick = (category) => {
-    navigate(`/${category}`);
+    navigate(`/home/filter/${category}`);
     setSelectedCategory(category);
     console.log(selectedCategory);
   };
@@ -188,7 +188,7 @@ const Home = () => {
   };
 
   const handleCountryClick = (country) => {
-    navigate(`/${country}`);
+    navigate(`/home/filter/${country}`);
     setSelectedCountry(country);
     console.log(selectedcountry);
   };
@@ -196,19 +196,16 @@ const Home = () => {
   const handleSearchClick = (event) => {
     if (event.key === 'Enter') {
       console.log('Búsqueda realizada:', searchValue);
-      // navigate(`/${searchValue}`);
+      navigate(`/home/filter/${searchValue}`);
     }
   };
 
   const handleContentClick = (content) => {
-    navigate(`/${content}`);
+    navigate(`/home/filter/${content}`);
     setSelectedContent(content);
     console.log(selectedContent);
   };
 
-  // const filteredPosts = post.filter((post) => {
-  //   return selectedCategory === "all" || post.category === selectedCategory;
-  // });
 
   return (
     <>
@@ -270,7 +267,6 @@ const Home = () => {
       <section className='home__section__lastContent'>
         <h3 className='home__section__lastContent__title'>Accede a nuestro contenido más reciente...</h3>
         <div className='home__article__lastContent'>
-
           <h5 className='home__article__lastContent__subTitle'>Últimas publicaciones en video</h5>
           <hr />
           <Swiper
@@ -395,16 +391,13 @@ const Home = () => {
               <SwiperSlide key={key}>
                 <CardContentDocumnts key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
               </SwiperSlide>
-
             ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
-            <bottom onClick={() => handleContentClick("pdf")}>Ver todo el contenido...</bottom>
+            <bottom onClick={() => handleContentClick("document")}>Ver todo el contenido...</bottom>
 
           </article>
-
         </div>
-
       </section>
     </>
   )

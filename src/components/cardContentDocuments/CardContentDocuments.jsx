@@ -17,7 +17,7 @@ export default function CardContentDocumnts({image, title, content}) {
           alt=""
           style={{position:'relative', opacity:'1'}}
         />
-        <FaFilePdf style={{position:'absolute', top:'25%', left:'40%', fontSize:'3rem', color:'#004632', padding:'10px', backgroundColor:'#CDF273', borderRadius:'10px'}} />
+        <FaFilePdf style={{position:'absolute', top:'120px', right:'10px', fontSize:'2rem', color:'#004632', padding:'5px', backgroundColor:'#fff', borderRadius:'10px'}} />
         <CardContent>
           <Typography gutterBottom variant="p" component="div">
             {title}
