@@ -15,6 +15,7 @@ import LandingPage from '../pages/landingPage/LandingPage'
 import Members from '../pages/members/Members'
 import AddPost from '../pages/addPost/AddPost'
 import ContactForm from '../pages/contactForm/ContactForm'
+import EditPost from '../pages/editPost/EditPost'
 import { setIsAuthenticated, setRole, setUserLogged } from '../store/slides/auth/auth'
 import FilterPost from '../pages/filterPosts/FilterPost'
 
@@ -58,17 +59,23 @@ const AppRouter = () => {
                                                 <Route path=":postId" element={<Comments />} />
                                             </Route>
                                             <Route path='add-post' element={<AddPost />} />
-                                            <Route path='profile' element={<UserProfile />} />
+                                            <Route path='profile'>
+                                                <Route path=":memberId" element={<UserProfile />} />
+                                            </Route>
                                             <Route path='members' element={<Members />} />
                                             <Route path='filter' element={<FilterPost />} />
                                             <Route path="filter">
                                                 <Route path=":filterAplied" element={<FilterPost />} />
                                             </Route>
-
+                                            <Route path='contact'>
+                                                <Route path=":memberId" element={<ContactForm />} />
+                                            </Route>
+                                            <Route path='edit-post'>
+                                                <Route path=":postId" element={<EditPost />} />
+                                            </Route>
                                         </Route>
                                     )
                                 }
-
                             </Route>
                         </>
                     )
