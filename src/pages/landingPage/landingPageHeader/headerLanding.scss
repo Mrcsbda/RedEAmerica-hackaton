@@ -18,8 +18,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 10%;
+    padding: 40px 10%;
     background-color:$night;
+    height: 80px;
     color: white;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
@@ -27,6 +28,8 @@ header {
 
 .logo img {
     width: 150px;
+    height: 60px;
+
 }
 
 nav ul {
