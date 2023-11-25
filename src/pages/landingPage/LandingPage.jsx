@@ -41,22 +41,45 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="invitacion">
-        <h2>Únete a la Red, Únete a la Transformación</h2>
-        <p>Regístrate ahora y sé parte activa de la transformación educativa y social en América Latina. <br/>
+          <h2>Únete a la Red, Únete a la Transformación</h2>
+          <p>Regístrate ahora y sé parte activa de la transformación educativa y social en América Latina. <br />
             Juntos, Hacemos Posible el Cambio en Nuestra Región.
-        </p>
-        <button onClick={() => handleContentClick('signup')}>Registrarse</button>
+          </p>
+          <button onClick={() => handleContentClick('signup')}>Registrarse</button>
         </div>
         <div className="informacion">
-        <div className="imagen">
+          <div className="imagen">
             <img src="../src/assets/img/compartiendo en la naturaleza.jpg" alt="Imagen de información" />
-        </div>
-        <div className="texto">
+          </div>
+          <div className="texto">
             <h2>Conectando Saberes para un Impacto Duradero</h2>
             <p>Nos enorgullece ofrecer a los miembros de la Red, compuesta por las organizaciones empresariales más influyentes de América Latina, un espacio exclusivo. Aquí, podrán compartir conocimientos prácticos, perspectivas enriquecedoras y experiencias diversas relacionadas con la inversión social privada.</p>
             <p>Facilitamos la co-creación y la colaboración al brindar oportunidades para formar alianzas de alto impacto. Creemos en la fuerza de la colaboración para abordar desafíos complejos y generar soluciones innovadoras que beneficien a nuestras comunidades.</p>
+          </div>
         </div>
-    </div>
+        <div className="caracteristicas">
+          <h2>Características</h2>
+          <div className="grid">
+            <div className="caracteristica">
+              <img src="../src/assets/img/learn.svg" alt="Imagen de Documenta y Aprende" />
+              <p>Documenta y Aprende</p>
+            </div>
+            <div className="caracteristica">
+              <img src="../src/assets/img/security.svg" alt="Imagen de Validación Exclusiva" />
+              <p>Validación Exclusiva</p>
+            </div>
+            <div className="caracteristica">
+              <img src="../src/assets/img/colaborar.svg" alt="Imagen de Colabora Estratégicamente" />
+              <p>Colabora Estratégicamente</p>
+            </div>
+            <div className="caracteristica">
+              <img src="../src/assets/img/contenidos.svg" alt="Imagen de Variedad de Contenidos" />
+              <p>Variedad de Contenidos</p>
+            </div>
+          </div>
+
+        </div>
+        
       </main>
     </div>)
 }
