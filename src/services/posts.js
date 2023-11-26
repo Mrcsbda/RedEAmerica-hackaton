@@ -1,4 +1,4 @@
-import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import {collection, addDoc, query, where, getDocs, deleteDoc, doc, getDoc} from 'firebase/firestore';
 import { firebaseDB } from '../firebase/firebaseConfig.js';
 import Swal from "sweetalert2";
 
@@ -15,6 +15,43 @@ const addPost = async (postData) => {
             });
         }
     } catch (e) {
+        console.error(e);
+        Swal.fire(
+            "Oops!",
+            e,
+            "error"
+        );
+    }
+}
+
+const getPostById = async(idPost) => {
+    try {
+        const documentPost = await getDoc(doc(firebaseDB, 'posts', idPost));
+
+        if (documentPost.exists()){
+            const postFind = documentPost.data();
+            const documentCompany = await getDoc(doc(firebaseDB, 'companies', postFind.userId));
+            if (documentCompany.exists()){
+                return {
+                    post: postFind,
+                    company: documentCompany.data()
+                }
+            }else {
+                Swal.fire(
+                    "Oops!",
+                    'El documento de la compañia no existe',
+                    "error"
+                );
+            }
+
+        }else {
+            Swal.fire(
+                "Oops!",
+                'El documento del post no existe',
+                "error"
+            );
+        }
+    }catch (e) {
         console.error(e);
         Swal.fire(
             "Oops!",
@@ -52,6 +89,7 @@ export const deletePostsDB = async (id) => {
     }
 }
 
+
 export const getAllPosts = async () => {
     try {
         const postsRef = collection(firebaseDB, 'posts');
@@ -69,4 +107,6 @@ export const getAllPosts = async () => {
     }
 };
 
-export { addPost }
+
+export { addPost, getPostById }
+

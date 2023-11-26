@@ -35,8 +35,6 @@ const AddPost = () => {
     } = useAddPost(userLogged.id)
 
     const errorsList = validationFormPost(errors)
-    console.log(errorsList)
-
 
     return (
         <Container maxWidth='xl' sx={{
