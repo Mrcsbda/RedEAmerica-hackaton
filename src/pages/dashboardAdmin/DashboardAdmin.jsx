@@ -68,6 +68,7 @@ const DashboardAdmin = () => {
             </tr>
           </thead>
           <tbody>
+            {/* filtro */}
             {companies.filter(company => {
               if (filterCountry && !company.country.toLowerCase().includes(filterCountry.toLowerCase())) {
                 return false;
@@ -76,7 +77,8 @@ const DashboardAdmin = () => {
                 return false;
               }
               return true;
-            }).map((company, index) => (
+            })
+            .map((company, index) => (
               <tr key={index}>
                 <td>{company.name}</td>
                 <td>{company.email}</td>
@@ -88,7 +90,7 @@ const DashboardAdmin = () => {
                     Cambiar estado
                   </button>
                 </td>
-              </tr>
+              </tr>              
             ))}
           </tbody>
         </table>
