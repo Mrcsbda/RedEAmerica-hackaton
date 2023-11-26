@@ -6,6 +6,7 @@ import { firebaseDB } from "../../firebase/firebaseConfig";
 import './dashboardAdmin.scss';
 
 const DashboardAdmin = () => {
+  const [noResults] = useState(false); // Nuevo estado
   const [isLoading, setIsLoading] = useState(true); // Nuevo estado
   const [companies, setCompanies] = useState([]);
   const [filterCountry, setFilterCountry] = useState('');
@@ -85,7 +86,7 @@ const DashboardAdmin = () => {
                 }
                 return true;
               })
-                .map((company, index) => (
+              .map((company, index) => (
                   <tr key={index}>
                     <td>{company.name}</td>
                     <td>{company.email}</td>
@@ -97,9 +98,14 @@ const DashboardAdmin = () => {
                         Cambiar estado
                       </button>
                     </td>
+
                   </tr>
+
+                  
                 ))
-            )}
+             
+            )} 
+            
           </tbody>
         </table>
       </div>
