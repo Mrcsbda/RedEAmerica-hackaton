@@ -1,12 +1,6 @@
 @import '../../assets/styles/universal.scss';
 @import '../../assets/styles/variables.scss';
-html, body {
-    min-height: 100%;
-}
-body {
-    display: flex;
-    flex-direction: column;
-}
+
 /* Hero */
 .hero {
     position: relative;
