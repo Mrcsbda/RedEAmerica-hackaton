@@ -69,7 +69,7 @@ const DashboardAdmin = () => {
           </thead>
           <tbody>
             {companies.filter(company => {
-              if (filterCountry && company.country.toLowerCase() !== filterCountry.toLowerCase()) {
+              if (filterCountry && !company.country.toLowerCase().includes(filterCountry.toLowerCase())) {
                 return false;
               }
               if (filterStatus && (company.isValidate.toString() !== filterStatus)) {
