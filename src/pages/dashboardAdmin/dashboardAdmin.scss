@@ -4,23 +4,40 @@
 body {
     font-family: Arial, sans-serif;
 }
+
 header, footer {
     background-color: #f8f9fa;
     padding: 20px;
     text-align: center;
 }
+h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+
+}
+
+main {
+    margin:60px auto ;
+    width: 80%;
+}
 table {
+    text-align: center;
     width: 100%;
     border-collapse: collapse;
+    transition: all 0.3s ease;
 }
+
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
 }
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
 .toggle-button {
     background-color: #4CAF50;
     border: none;
@@ -32,5 +49,18 @@ tr:nth-child(even) {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-}
+    transition: background-color 0.3s ease;
 
+    &:hover {
+        background-color: darken(#4CAF50, 10%);
+    }
+
+    &:active {
+        background-color: darken(#4CAF50, 20%);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(#4CAF50, 0.5);
+    }
+}
