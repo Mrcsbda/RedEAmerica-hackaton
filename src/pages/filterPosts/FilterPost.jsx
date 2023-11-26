@@ -415,17 +415,25 @@ const FilterPost = () => {
 
     const filteredPosts = allPostsRedux?.filter((post) => {
         console.log(post);
+    
+        if (filterAplied.toLowerCase() === 'all') {
+            // Si el filtro es "all", devolver todas las publicaciones
+            return true;
+        }
+    
         const lowerCaseFilter = filterAplied.toLowerCase();
         const titleMatches = post.title.toLowerCase().includes(lowerCaseFilter);
         const contentMatches = post.content.toLowerCase().includes(lowerCaseFilter);
         const categoryMatchesFilterAplied = post.category === filterAplied;
         const contentMatchesFilterAplied = post.typeFormat === filterAplied;
-         const categoryMatches = post.category === selectedCategory;
+        const categoryMatches = post.category === selectedCategory;
         const contentTypeMatches = post.typeFormat === selectedContent;
-
-        return titleMatches || contentMatches ||  categoryMatches || contentTypeMatches || categoryMatchesFilterAplied || contentMatchesFilterAplied;
+    
+        return titleMatches || contentMatches || categoryMatches || contentTypeMatches || categoryMatchesFilterAplied || contentMatchesFilterAplied;
     });
-
+    
+    console.log("Posts filtrados:", filteredPosts);
+    
 
     // const filteredPosts = allPostsRedux?.filter((post) => {
     //     const countryAndCategoryMatches = selectedCountry && selectedCategory && post.country === selectedCountry && post.category === selectedCategory;
@@ -470,12 +478,18 @@ const FilterPost = () => {
                         <CardContentPodcast image={post.imagePost} title={post.title} content={post.content} />
                     </div>
                 );
-            case 'documento':
+            case 'pdf':
                 return (
                     <div onClick={() => handleGoToPost(post.id)}>
                         <CardContentDocumnts image={post.imagePost} title={post.title} content={post.content} />
                     </div>
                 );
+                case 'image':
+                    return (
+                        <div onClick={() => handleGoToPost(post.id)}>
+                            <CardContentVideo image={post.imagePost} title={post.title} content={post.content} />
+                        </div>
+                    );
             default:
                 return null;
         }
