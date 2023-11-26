@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -20,6 +20,9 @@ import CardContentDocumnts from '../../components/cardContentDocuments/CardConte
 import CardsByContent from '../../components/cardsByContent/CardsByContent';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Autocomplete, TextField } from "@mui/material";
+import { useDispatch, useSelector } from 'react-redux';
+import { actionGetPostssAsync } from '../../store/actions/post/gettAllPosts';
+import { getCompanyInfo } from '../../services/company';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -69,11 +72,32 @@ const FilterPost = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedContent, setSelectedContent] = useState('');
+    const [selectedAll, setSelectedAll] = useState('');
     const [visibleCategories, setVisibleCategories] = useState(10);
     const [localFilter, setLocalFilter] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { filterAplied } = useParams();
     console.log(filterAplied);
+
+    const allPostsRedux = useSelector((state) => state.posts.posts);
+    const [user, setUser] = useState({})
+    useEffect(() => {
+        dispatch(actionGetPostssAsync())
+       // getData()
+    }, [dispatch]);
+
+
+    // const getData = async () => {
+    //     const dataCompany = await getCompanyInfo("u8nAh7kdtnho8CXLyU0rtsumwvk2")
+
+    //     setUser(dataCompany)
+    // }
+    // console.log(user);
+
+
+    console.log(allPostsRedux);
+    // const allPostsRedux = useSelector((state) => state.posts.posts);
 
     const post = [
         {
@@ -218,28 +242,18 @@ const FilterPost = () => {
     ]
 
     const categories = [
-        "Informes de gestión",
-        "Comunidades Sostenibles",
-        "Inclusión económica",
-        "Educación",
-        "Salud",
-        "Desarrollo local",
-        "Empresa y Comunidad",
-        "Alianzas y programas",
-        "Casos y experiencias",
-        "Memorias FIR",
-        "Fortalecimiento de miembros",
-        "Paz",
-        "Primera infancia",
-        "Desarrollo de Base",
-        "Premio",
-        "Covid",
-        "Agenda America Latina",
+        'Desarrollo Comunitario',
+        'Inversión Social:',
+        'Educación para el Desarrollo Sostenible',
+        'Emprendimiento Social',
+        'Salud y Bienestar:',
+        'Medio Ambiente y Sostenibilidad:',
+        'Desarrollo Económico Local',
     ];
 
     const countries = [
         'honduras',
-        'colombia',
+        'Colombia',
         'venezuela',
         'brasil',
         'méxico',
@@ -247,7 +261,7 @@ const FilterPost = () => {
         'costa rica',
         'ecuador',
         'perú',
-        'chile',
+        'Chile',
         'argentina'
     ];
 
@@ -256,6 +270,13 @@ const FilterPost = () => {
         "podcast",
         "documento"
     ]
+
+    const handleContryAndCategoryClick = (country, category) => {
+        navigate(`/home/filter/${country}/${category}`);
+        setSelectedCategory(category);
+        setSelectedAll(selectedCountry, selectedCategory)
+        console.log(selectedCategory);
+    };
 
 
     const handleCategoryClick = (category) => {
@@ -271,7 +292,7 @@ const FilterPost = () => {
     const handleCountryClick = (country) => {
         navigate(`/home/filter/${country}`);
         setSelectedCountry(country);
-        console.log(selectedcountry);
+        console.log(selectedCountry);
     };
 
     const handleSearchClick = (event) => {
@@ -307,21 +328,127 @@ const FilterPost = () => {
 
 
     const handleChange = (event, newValue, context) => {
+
+        switch (context) {
+            case 'country':
+                setSelectedCountry(newValue);
+                // Otras acciones específicas para la selección de país
+                break;
+            case 'category':
+                setSelectedCategory(newValue);
+                // Otras acciones específicas para la selección de categoría
+                break;
+            case 'contentTypes':
+                setSelectedContent(newValue);
+                // Otras acciones específicas para la selección de categoría
+                break;
+            // Otros casos según tus necesidades
+            default:
+                break;
+        }
+
         navigate(`/home/filter/${newValue}`);
+
+        // const filteredPosts = post.filter(item => {
+        //     // Aplica filtro por país
+        //     if (selectedCountry && item.country !== selectedCountry) {
+        //         return false;
+        //     }
+
+        //     // Aplica filtro por categoría
+        //     if (selectedCategory && item.category !== selectedCategory) {
+        //         return false;
+        //     }
+
+        //     // Aplica filtro por tipo de contenido
+        //     if (selectedContent && item.contentType !== selectedContent) {
+        //         return false;
+        //     }
+
+        //     // Puedes agregar más condiciones según tus necesidades
+        //     // Por ejemplo, si seleccionas país y categoría, verifica si el post cumple ambas condiciones
+        //     if (selectedCountry && selectedCategory) {
+        //         // Asumiendo que `item.category` es un array y deseas verificar si contiene la categoría seleccionada
+        //         if (!item.categoryId.includes(selectedCategory)) {
+        //             return false;
+        //         }
+        //     }
+
+        //     // Si no se ha encontrado ninguna discrepancia, muestra el elemento
+        //     return true;
+        // });
+
+        //setFilteredData(filteredPosts);
+
     };
 
     console.log(selectedCountry);
 
-    const filteredPosts = post.filter((post) => {
+    // const filteredPosts = allPostsRedux?.filter(async (post) => {
+    //     const lowerCaseFilter = filterAplied.toLowerCase();
+    //     const titleMatches = post.title.toLowerCase().includes(lowerCaseFilter);
+    //     const contentMatches = post.content.toLowerCase().includes(lowerCaseFilter);
+    //     const categoryMatchesFilterAplied = post.category === filterAplied;
+    //     const contentMatchesFilterAplied = post.typeFormat === filterAplied;
+    
+    //     // Obtener userId del post
+    //     const userId = post.userId;
+    //     console.log(userId);
+    
+    //     // Obtener información del usuario
+    //     const dataCompany = await getCompanyInfo(userId);
+    //     console.log(dataCompany);
+    
+    //     // Verificar si se obtuvo la información del usuario y tiene la propiedad country
+    //     const userCountryMatches = dataCompany && dataCompany.country === selectedCountry;
+    
+    //     return (
+    //         titleMatches ||
+    //         contentMatches ||
+    //         categoryMatchesFilterAplied ||
+    //         contentMatchesFilterAplied ||
+    //         userCountryMatches
+    //     );
+    // });
+    
+    
+
+    const filteredPosts = allPostsRedux?.filter((post) => {
+        console.log(post);
         const lowerCaseFilter = filterAplied.toLowerCase();
         const titleMatches = post.title.toLowerCase().includes(lowerCaseFilter);
         const contentMatches = post.content.toLowerCase().includes(lowerCaseFilter);
-        const categoryMatches = post.categoryId === filterAplied;
-        const countryMatches = post.country === selectedCountry;
-        const contentTypeMatches = post.contentType === filterAplied;
+        const categoryMatchesFilterAplied = post.category === filterAplied;
+        const contentMatchesFilterAplied = post.typeFormat === filterAplied;
+         const categoryMatches = post.category === selectedCategory;
+        const contentTypeMatches = post.typeFormat === selectedContent;
 
-        return titleMatches || contentMatches || categoryMatches || countryMatches || contentTypeMatches;
+        return titleMatches || contentMatches ||  categoryMatches || contentTypeMatches || categoryMatchesFilterAplied || contentMatchesFilterAplied;
     });
+
+
+    // const filteredPosts = allPostsRedux?.filter((post) => {
+    //     const countryAndCategoryMatches = selectedCountry && selectedCategory && post.country === selectedCountry && post.category === selectedCategory;
+    //     const lowerCaseFilter = filterAplied.toLowerCase();
+    //     const titleMatches = post.title.toLowerCase().includes(lowerCaseFilter);
+    //     const contentMatches = post.content.toLowerCase().includes(lowerCaseFilter);
+    //    // const countryMatches = post.country === selectedCountry;
+    //     const categoryMatches = post.category === selectedCategory;
+    //     const contentTypeMatches = post.typeFormat === selectedContent;
+
+    //     return titleMatches || contentMatches || countryAndCategoryMatches ||  categoryMatches || contentTypeMatches;
+    // });
+
+
+
+    //const [filteredData, setFilteredData ] = useState(null)
+
+
+
+    // Actualiza el estado del resultado filtrado
+
+
+    // console.log(filteredData);
 
     const handleGoToPost = (post) => {
         navigate(`/home/post/${post}`);
@@ -330,23 +457,23 @@ const FilterPost = () => {
 
     const renderCard = (post) => {
 
-        switch (post.contentType) {
+        switch (post.typeFormat) {
             case 'video':
                 return (
                     <div onClick={() => handleGoToPost(post.id)}>
-                        <CardContentVideo image={post.image} title={post.title} content={post.content} />
+                        <CardContentVideo image={post.imagePost} title={post.title} content={post.content} />
                     </div>
                 );
             case 'podcast':
                 return (
                     <div onClick={() => handleGoToPost(post.id)}>
-                        <CardContentPodcast image={post.image} title={post.title} content={post.content} />
+                        <CardContentPodcast image={post.imagePost} title={post.title} content={post.content} />
                     </div>
                 );
             case 'documento':
                 return (
                     <div onClick={() => handleGoToPost(post.id)}>
-                        <CardContentDocumnts image={post.image} title={post.title} content={post.content} />
+                        <CardContentDocumnts image={post.imagePost} title={post.title} content={post.content} />
                     </div>
                 );
             default:
@@ -419,7 +546,7 @@ const FilterPost = () => {
                     gutter={'2rem'}
                 >
                     <Masonry gutter={'2rem'} style={{ display: 'flex', justifyContent: 'center' }}>
-                        {filteredPosts.map(renderCard)}
+                        {filteredPosts?.map(renderCard)}
                     </Masonry>
                 </ResponsiveMasonry>
             </section>

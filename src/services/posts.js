@@ -52,4 +52,21 @@ export const deletePostsDB = async (id) => {
     }
 }
 
+export const getAllPosts = async () => {
+    try {
+        const postsRef = collection(firebaseDB, 'posts');
+        const querySnapshot = await getDocs(postsRef);
+
+        const posts = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+
+        return posts;
+    } catch (error) {
+        console.error('Error fetching all posts:', error);
+        throw error;
+    }
+};
+
 export { addPost }
