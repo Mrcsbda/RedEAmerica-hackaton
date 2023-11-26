@@ -7,20 +7,20 @@ import './dashboardAdmin.scss';
 
 const DashboardAdmin = () => {
   const [companies, setCompanies] = useState([]);
+  const [filterCountry, setFilterCountry] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
 
   const getCompanies = async () => {
     try {
       const companiesRef = collection(firebaseDB, 'companies');
       const companySnapshot = await getDocs(companiesRef);
       const companies = companySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log(companies);
       return companies;
     } catch (error) {
       console.log(error);
       return false;
     }
   };
-
 
   useEffect(() => {
     const fetchCompanies = async () => {
@@ -44,13 +44,18 @@ const DashboardAdmin = () => {
       i === index ? { ...c, isValidate: newStatus } : c
     ));
   };
-  getCompanies()
 
   return (
     <div>
       <Header />
       <div className="main">
         <h1>Panel de Administración</h1>
+        <input type="text" placeholder="Filtrar por país" value={filterCountry} onChange={e => setFilterCountry(e.target.value)} />
+        <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
+          <option value="">Todos</option>
+          <option value="true">Activo</option>
+          <option value="false">Inactivo</option>
+        </select>
         <table>
           <thead>
             <tr>
@@ -63,7 +68,15 @@ const DashboardAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {companies.map((company, index) => (
+            {companies.filter(company => {
+              if (filterCountry && company.country.toLowerCase() !== filterCountry.toLowerCase()) {
+                return false;
+              }
+              if (filterStatus && (company.isValidate.toString() !== filterStatus)) {
+                return false;
+              }
+              return true;
+            }).map((company, index) => (
               <tr key={index}>
                 <td>{company.name}</td>
                 <td>{company.email}</td>
