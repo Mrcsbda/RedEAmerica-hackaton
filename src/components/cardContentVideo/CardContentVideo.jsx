@@ -19,7 +19,7 @@ export default function CardContentVideo({image, title, content}) {
         />
         <FaFileVideo style={{position:'absolute', top:'120px', right:'10px', fontSize:'2rem', color:'#004632', padding:'5px', backgroundColor:'#fff', borderRadius:'10px'}} />
         <CardContent>
-          <Typography gutterBottom variant="p" component="div">
+          <Typography gutterBottom variant="p" component="div" sx={{ overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, textOverflow: 'ellipsis' }}>
             {title}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">

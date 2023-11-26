@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -16,6 +16,10 @@ import 'swiper/css/pagination';
 import { Grid, Pagination } from 'swiper/modules';
 import CardContentPodcast from '../../components/cardContentPodcast/CardContentPodcast';
 import CardContentDocumnts from '../../components/cardContentDocuments/CardContentDocuments';
+import { getAllPosts } from '../../services/posts';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionGetPostssAsync } from '../../store/actions/post/gettAllPosts';
+import { categoriesOptions } from '../addPost/constants/optionsSelect';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -66,7 +70,20 @@ const Home = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedContent, setSelectedContent] = useState('');
   const [visibleCategories, setVisibleCategories] = useState(10);
+  const [allPosts, setAllPost] = useState(null)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+  const allPostsRedux = useSelector((state) => state.posts.posts);
+
+  useEffect(() => {
+    dispatch(actionGetPostssAsync())
+  }, [dispatch]);
+
+  console.log(allPostsRedux);
+
+
 
   const post = [
     {
@@ -142,6 +159,7 @@ const Home = () => {
   ]
 
   const categories = [
+    "Educación para el Desarrollo Sostenible",
     "Informes de gestión",
     "Comunidades Sostenibles",
     "Inclusión económica",
@@ -178,13 +196,13 @@ const Home = () => {
 
 
   const handleCategoryClick = (category) => {
-    navigate(`/home/filter/${category}`);
+    navigate(`/home/filter/${category.category}`);
     setSelectedCategory(category);
     console.log(selectedCategory);
   };
 
   const handleLoadMoreCategories = () => {
-    setVisibleCategories(categories.length);
+    setVisibleCategories(categoriesOptions.length);
   };
 
   const handleCountryClick = (country) => {
@@ -204,6 +222,11 @@ const Home = () => {
     navigate(`/home/filter/${content}`);
     setSelectedContent(content);
     console.log(selectedContent);
+  };
+
+  const handleGoToPost = (post) => {
+    navigate(`/home/post/${post}`);
+    console.log(post);
   };
 
 
@@ -234,19 +257,21 @@ const Home = () => {
       <section className='home__section__categories'>
         <h3 className='home__section__categories__title'>Explora por categorias</h3>
         <div className='home__article__categories'>
-          {categories.slice(0, visibleCategories).map((category) => (
-            <button key={category} className='home__article__categories__btn' onClick={() => handleCategoryClick(category)}>
-              {category}
+          {categoriesOptions.slice(0, visibleCategories).map((category) => (
+            <button key={category.id} className='home__article__categories__btn' onClick={() => handleCategoryClick(category)}>
+              {category.category}
             </button>
           ))}
         </div>
-        {visibleCategories < categories.length && (
+        {visibleCategories < categoriesOptions.length && (
           <button className='home__article__loadMoreBtn' onClick={handleLoadMoreCategories}>
             <BiSolidCategory className='home__article__loadMoreBtn__icon' />
             <span>Ver más categorías...</span>
           </button>
         )}
       </section>
+
+
 
       {/*****************Seccion tres*****************/}
       <section className='home__section__searchByCountry'>
@@ -292,13 +317,18 @@ const Home = () => {
               },
             }}
           >
-            {Object.keys(post).map((key) => (
+            {Object.keys(allPostsRedux)
+              .filter((key) => allPostsRedux[key].typeFormat === 'video')
+              .slice(-15)  // Obtener los últimos 15 elementos
+              .map((key) => (
+                <SwiperSlide key={key}>
+                  <div onClick={() => handleGoToPost(allPostsRedux[key].id)}>
+                    <CardContentVideo key={key} title={allPostsRedux[key].title} image={allPostsRedux[key].imagePost} content={allPostsRedux[key].content} />
+                  </div>
+                </SwiperSlide>
+              ))}
 
-              <SwiperSlide key={key}>
-                <CardContentVideo key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
-              </SwiperSlide>
 
-            ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
             <bottom onClick={() => handleContentClick("video")}>Ver todo el contenido...</bottom>
@@ -339,13 +369,17 @@ const Home = () => {
               },
             }}
           >
-            {Object.keys(post).map((key) => (
+            {Object.keys(allPostsRedux)
+              .filter((key) => allPostsRedux[key].typeFormat === 'podcast')
+              .slice(-15)  // Obtener los últimos 15 elementos
+              .map((key) => (
+                <SwiperSlide key={key}>
+                  <div onClick={() => handleGoToPost(allPostsRedux[key].id)}>
+                    <CardContentPodcast key={key} title={allPostsRedux[key].title} image={allPostsRedux[key].imagePost} content={allPostsRedux[key].content} />
+                  </div>
+                </SwiperSlide>
+              ))}
 
-              <SwiperSlide key={key}>
-                <CardContentPodcast key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
-              </SwiperSlide>
-
-            ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
             <bottom onClick={() => handleContentClick("podcast")}>Ver todo el contenido...</bottom>
@@ -386,12 +420,19 @@ const Home = () => {
               },
             }}
           >
-            {Object.keys(post).map((key) => (
+            {Object.keys(allPostsRedux)
+              .filter((key) => allPostsRedux[key].typeFormat === 'pdf')
+              .slice(-15)  // Obtener los últimos 15 elementos
+              .map((key) => (
+                <SwiperSlide key={key}>
+                  <div onClick={() => handleGoToPost(allPostsRedux[key].id)}>
+                    <CardContentDocumnts key={key} title={allPostsRedux[key].title} image={allPostsRedux[key].imagePost} content={allPostsRedux[key].content} onClick={() => handleGoToPost(allPostsRedux[key].id)} />
+                  </div>
+                </SwiperSlide>
+              ))}
 
-              <SwiperSlide key={key}>
-                <CardContentDocumnts key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
-              </SwiperSlide>
-            ))}
+
+
           </Swiper>
           <article className='home__article__lastContent__btn'>
             <bottom onClick={() => handleContentClick("document")}>Ver todo el contenido...</bottom>

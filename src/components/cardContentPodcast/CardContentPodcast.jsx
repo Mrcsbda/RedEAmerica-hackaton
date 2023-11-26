@@ -18,7 +18,7 @@ export default function CardContentPodcast({image, title, content}) {
     <Card sx={{ display: 'flex' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }} className='box'>
         <CardContent sx={{ flex: '1 0 auto' }} >
-          <Typography component="div" variant="p">
+          <Typography component="div" variant="p" sx={{ overflow: 'hidden', display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 3, textOverflow: 'ellipsis', marginTop:'10px' }}>
             {title}
           </Typography>
           {/* <Typography variant="subtitle1" color="text.secondary" component="div">
