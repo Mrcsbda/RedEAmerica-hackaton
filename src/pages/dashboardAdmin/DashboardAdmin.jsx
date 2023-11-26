@@ -6,6 +6,7 @@ import { firebaseDB } from "../../firebase/firebaseConfig";
 import './dashboardAdmin.scss';
 
 const DashboardAdmin = () => {
+  const [isLoading, setIsLoading] = useState(true); // Nuevo estado
   const [companies, setCompanies] = useState([]);
   const [filterCountry, setFilterCountry] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
@@ -26,6 +27,8 @@ const DashboardAdmin = () => {
     const fetchCompanies = async () => {
       const companiesData = await getCompanies();
       setCompanies(companiesData);
+      setIsLoading(false); // Actualizar el estado cuando los datos se hayan cargado
+
     };
 
     fetchCompanies();
@@ -68,30 +71,35 @@ const DashboardAdmin = () => {
             </tr>
           </thead>
           <tbody>
-            {/* filtro */}
-            {companies.filter(company => {
-              if (filterCountry && !company.country.toLowerCase().includes(filterCountry.toLowerCase())) {
-                return false;
-              }
-              if (filterStatus && (company.isValidate.toString() !== filterStatus)) {
-                return false;
-              }
-              return true;
-            })
-            .map((company, index) => (
-              <tr key={index}>
-                <td>{company.name}</td>
-                <td>{company.email}</td>
-                <td>{company.country}</td>
-                <td>{company.phone}</td>
-                <td>{company.isValidate ? 'Activo' : 'Inactivo'}</td>
-                <td>
-                  <button className="toggle-button" onClick={() => toggleStatus(index)}>
-                    Cambiar estado
-                  </button>
-                </td>
-              </tr>              
-            ))}
+            {isLoading ? (
+              <tr>
+                <td colSpan="6">Cargando datos...</td>
+              </tr>
+            ) : (
+              companies.filter(company => {
+                if (filterCountry && !company.country.toLowerCase().includes(filterCountry.toLowerCase())) {
+                  return false;
+                }
+                if (filterStatus && (company.isValidate.toString() !== filterStatus)) {
+                  return false;
+                }
+                return true;
+              })
+                .map((company, index) => (
+                  <tr key={index}>
+                    <td>{company.name}</td>
+                    <td>{company.email}</td>
+                    <td>{company.country}</td>
+                    <td>{company.phone}</td>
+                    <td>{company.isValidate ? 'Activo' : 'Inactivo'}</td>
+                    <td>
+                      <button className="toggle-button" onClick={() => toggleStatus(index)}>
+                        Cambiar estado
+                      </button>
+                    </td>
+                  </tr>
+                ))
+            )}
           </tbody>
         </table>
       </div>
