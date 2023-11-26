@@ -38,7 +38,23 @@ th, td {
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+input[type="text"],
+select {
+  width: 200px;
+  padding: 10px;
+  margin: 20px 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 
+}
+
+select {
+//   appearance: none;
+//   background: url('arrow-down.svg') no-repeat right center;
+//   background-color: #fff;
+cursor: pointer;
+}
 .toggle-button {
     background-color: #4CAF50;
     border: none;
