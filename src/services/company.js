@@ -1,4 +1,4 @@
-import { doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { firebaseDB } from "../firebase/firebaseConfig";
 
 const collectionCompany = "companies";
@@ -70,3 +70,15 @@ export const getAllCompanies = async () => {
     }
   };
   
+
+  export const getCompanies = async () => {
+    try {
+      const companiesRef = collection(firebaseDB, 'companies');
+      const companySnapshot = await getDocs(companiesRef);
+      const companies = companySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      return companies;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
