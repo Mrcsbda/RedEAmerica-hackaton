@@ -1,6 +1,12 @@
 @import '../../assets/styles/universal.scss';
 @import '../../assets/styles/variables.scss';
-
+html, body {
+    min-height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
 /* Hero */
 .hero {
     position: relative;
@@ -170,6 +176,7 @@
 }
 
 footer {
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
     align-items: center; /* Centra el contenido verticalmente */
