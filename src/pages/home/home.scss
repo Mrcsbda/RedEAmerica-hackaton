@@ -3,6 +3,13 @@
 
 .home {
     &__section {
+        &__secondNavbar´{
+            background-color: #fff;
+            display: flex;
+            gap: 2;
+            border-left: $mindaro;
+
+        }
         &__search {
             background-image: linear-gradient(rgba(0.004, 0.078, 0.055, 0.5), rgba(0.004, 0.078, 0.055, 0.5)), url('https://www.redeamerica.org/ReporteAnual2022/assets/img/home/colaborar.jpg');
             background-position: center;
@@ -85,6 +92,17 @@
     }
 
     &__article {
+        &__secondNavbar {
+            button {
+                background-color: transparent;
+                color: $night;
+                border-radius: 0px;
+                &:hover {
+                    background-color: $racing-green;
+                    color: $mindaro;
+                }
+            }
+        }
         &__search {
             width: 50%;
             display: flex;
