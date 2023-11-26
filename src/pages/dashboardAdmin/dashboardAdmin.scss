@@ -18,7 +18,7 @@ h1{
 
 }
 
-main {
+.main {
     margin:60px auto ;
     width: 80%;
 }
@@ -27,6 +27,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     transition: all 0.3s ease;
+    min-height: 215px;
 }
 
 th, td {
