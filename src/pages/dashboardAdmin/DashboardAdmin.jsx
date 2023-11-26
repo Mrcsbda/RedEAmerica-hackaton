@@ -49,7 +49,7 @@ const DashboardAdmin = () => {
   return (
     <div>
       <Header />
-      <main>
+      <div className="main">
         <h1>Panel de Administración</h1>
         <table>
           <thead>
@@ -79,7 +79,7 @@ const DashboardAdmin = () => {
             ))}
           </tbody>
         </table>
-      </main>
+      </div>
       <footer>
         <div className="logo">
           <img src="https://www.redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="Logo" />
