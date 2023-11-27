@@ -24,8 +24,15 @@ RedEAmérica es una plataforma innovadora diseñada para centralizar y compartir
 2. Instala las dependencias: `npm install`
 3. Configura las credenciales de Firebase en el archivo de configuración.
 
+<hr>   
+
 Para acceder a la plataforma en línea, visita [RedEAmérica](https://redeamerica-hackaton.web.app/).
+<br>
 ![image](https://github.com/Mrcsbda/RedEAmerica-hackaton/assets/94869227/5b144e72-d7cb-4559-bf4c-e6f89ba76459)
+<br>
+![image](https://github.com/Mrcsbda/RedEAmerica-hackaton/assets/94869227/0f8c7ece-a2ad-45ab-8931-1cab7f74b361)
+
+
 
 ## Tecnologías Utilizadas
 
@@ -39,9 +46,11 @@ Si deseas contribuir a este proyecto, puedes hacer un "fork" del proyecto, reali
 
 ## Desarrolladores
 
-- [Andres Briñez](https://github.com/andres-brinez)
-- [Mariana Castañeda](https://github.com/Mrcsbda)
-- [Andres Vega](https://github.com/jandres-vega)
-- [Maria Antonieta](https://github.com/Marianto38)
-- [Stefannya Onofre](https://github.com/stefannyaonofre)
+
+
+- - [![Andres Briñez](![perfil](https://github.com/Mrcsbda/RedEAmerica-hackaton/assets/94869227/8478d12d-64a6-4e13-929b-db36660823f8))](https://github.com/andres-brinez) [Andres Briñez](https://github.com/andres-brinez)
+- [![Mariana Castañeda](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/Mrcsbda) [Mariana Castañeda](https://github.com/Mrcsbda)
+- [![Andres Vega](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/jandres-vega) [Andres Vega](https://github.com/jandres-vega)
+- [![Maria Antonieta](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/Marianto38) [Maria Antonieta](https://github.com/Marianto38)
+- [![Stefannya Onofre](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/stefannyaonofre) [Stefannya Onofre](https://github.com/stefannyaonofre)
 
