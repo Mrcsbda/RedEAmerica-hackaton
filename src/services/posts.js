@@ -134,5 +134,4 @@ export const getAllPosts = async () => {
     }
 };
 
-
 export { addPost, getPostById }
