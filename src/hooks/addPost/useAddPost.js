@@ -3,9 +3,10 @@ import fileUpload from "../../services/fileUpload.js";
 import {addPost} from "../../services/posts.js";
 import Swal from "sweetalert2";
 
-const useAddPost = (idUser) => {
+const useAddPost = (idUser, reset) => {
     const fileInputRef = useRef(null);
     const fileImagePost = useRef(null);
+    const [loading, setLoading] = useState(false)
     const [recurs, setRecurs] = useState(null);
     const [postImage, setPostImage] = useState(null);
     const [imageUrl, setImageUrl] = useState(null);
@@ -43,24 +44,36 @@ const useAddPost = (idUser) => {
         }
     }
 
-    const handleSendPost = async(data) => {
-        if (!recurs || !postImage){
+    const handleSendPost = async (data) => {
+        setLoading(true)
+        if (!recurs || !postImage) {
             Swal.fire(
                 "Oops!",
                 "Debes ingresar los recursos",
                 "error"
             );
-        }else {
+            setLoading(false)
+        } else {
+            let urlRecurs = null
             const formatRecurs = recurs.type.split('/');
-            const imagePost =await fileUpload(postImage, 'image')
-            const urlRecurs = await fileUpload(recurs, formatRecurs[0]);
+            const imagePost = await fileUpload(postImage, 'image');
+
+            if (formatRecurs[0] === 'application') {
+                urlRecurs = await fileUpload(recurs, 'raw');
+            } else {
+                urlRecurs = await fileUpload(recurs, formatRecurs[0]);
+            }
             const newPost = {
                 ...data,
                 userId: idUser,
                 imagePost: imagePost,
                 recurs: urlRecurs
             }
-            await addPost(newPost);
+            await addPost(newPost)
+            reset()
+            setImageUrl(null)
+            setImagePost(null);
+            setLoading(false)
 
         }
 
@@ -75,7 +88,8 @@ const useAddPost = (idUser) => {
         fileImagePost,
         imageUrl,
         fileInputRef,
-        imagePost
+        imagePost,
+        loading
     }
 }
 
