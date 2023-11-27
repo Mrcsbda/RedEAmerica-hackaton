@@ -37,7 +37,7 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="imagen">
-            <img src="../src/assets/img/amigodNaturaleza.jpg" alt="Imagen de Quiénes Somos" />
+            <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1701057514/sahdfwdxslclbhcg4bcs.jpg" alt="Imagen de Quiénes Somos" />
           </div>
         </div>
         <div className="invitacion">
@@ -49,7 +49,7 @@ const LandingPage = () => {
         </div>
         <div className="informacion" id="info">
           <div className="imagen">
-            <img src="../src/assets/img/compartiendo en la naturaleza.jpg" alt="Imagen de información" />
+            <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1701057516/giwwrq68jaegi75zfrhl.jpg" alt="Imagen de información" />
           </div>
           <div className="texto">
             <h2>Conectando Saberes para un Impacto Duradero</h2>
@@ -61,19 +61,19 @@ const LandingPage = () => {
           <h2>Características</h2>
           <div className="grid">
             <div className="caracteristica">
-              <img src="../src/assets/img/learn.svg" alt="Imagen de Documenta y Aprende" />
+              <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1701057513/hfeqszpfmqeuju95yfgc.svg" alt="Imagen de Documenta y Aprende" />
               <p>Documenta y Aprende</p>
             </div>
             <div className="caracteristica">
-              <img src="../src/assets/img/security.svg" alt="Imagen de Validación Exclusiva" />
+              <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1701057514/msyde1kuzxvetcwtbvid.svg" alt="Imagen de Validación Exclusiva" />
               <p>Validación Exclusiva</p>
             </div>
             <div className="caracteristica">
-              <img src="../src/assets/img/colaborar.svg" alt="Imagen de Colabora Estratégicamente" />
+              <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1701057513/vgb1sfoawkawztkhznll.svg" alt="Imagen de Colabora Estratégicamente" />
               <p>Colabora Estratégicamente</p>
             </div>
             <div className="caracteristica">
-              <img src="../src/assets/img/contenidos.svg" alt="Imagen de Variedad de Contenidos" />
+              <img src="https://res.cloudinary.com/dd8l8bm6q/image/upload/v1701057513/mvpkfliobsybexm8vhcv.svg" alt="Imagen de Variedad de Contenidos" />
               <p>Variedad de Contenidos</p>
             </div>
           </div>
