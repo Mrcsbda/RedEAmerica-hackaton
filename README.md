@@ -46,11 +46,9 @@ Si deseas contribuir a este proyecto, puedes hacer un "fork" del proyecto, reali
 
 ## Desarrolladores
 
-
-
-- - [![Andres Briñez](![perfil](https://github.com/Mrcsbda/RedEAmerica-hackaton/assets/94869227/8478d12d-64a6-4e13-929b-db36660823f8))](https://github.com/andres-brinez) [Andres Briñez](https://github.com/andres-brinez)
-- [![Mariana Castañeda](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/Mrcsbda) [Mariana Castañeda](https://github.com/Mrcsbda)
-- [![Andres Vega](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/jandres-vega) [Andres Vega](https://github.com/jandres-vega)
-- [![Maria Antonieta](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/Marianto38) [Maria Antonieta](https://github.com/Marianto38)
-- [![Stefannya Onofre](https://res.cloudinary.com/dazfdevly/image/upload/v1701057692/empresas-logos/qrgjacdejvqecsmpkkgf.jpg)](https://github.com/stefannyaonofre) [Stefannya Onofre](https://github.com/stefannyaonofre)
+- [Andres Briñez](https://github.com/andres-brinez)
+- [Mariana Castañeda](https://github.com/Mrcsbda)
+- [Andres Vega](https://github.com/jandres-vega)
+- [Maria Antonieta](https://github.com/Marianto38)
+- [Stefannya Onofre](https://github.com/stefannyaonofre)
 
