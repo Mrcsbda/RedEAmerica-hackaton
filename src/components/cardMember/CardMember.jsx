@@ -19,7 +19,6 @@ const CardMember = ({user}) => {
         navigate(`/home/contact/${memberId}`)
     }
     const navigateToProfile = (memberId) => {
-        console.log("voooy");
         navigate(`/home/profile/${memberId}`)
     }
 

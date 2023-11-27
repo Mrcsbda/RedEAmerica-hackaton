@@ -53,7 +53,6 @@ const Home = () => {
   };
 
   const handleCountryClick = (country) => {
-    console.log(country);
     dispatch(filterByCountry(country))
     navigate(`/home/filter/${country}`);
   };
@@ -101,7 +100,7 @@ const Home = () => {
 
       {/*****************Seccion dos*****************/}
       <section className='home__section__categories'>
-        <h3 className='home__section__categories__title'>Explora por categorias</h3>
+        <h3 className='home__section__categories__title'>Explora por categorías</h3>
         <div className='home__article__categories'>
           {categoriesOptions.slice(0, visibleCategories).map((category) => (
             <button key={category.id} className='home__article__categories__btn' onClick={() => handleCategoryClick(category)}>
