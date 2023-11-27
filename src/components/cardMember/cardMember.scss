@@ -1,0 +1,147 @@
+@import '../../../src/assets/styles/variables.scss';
+
+.member {
+  
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    &__info-container {
+        width: 280px;
+       // border: 1px solid rgb(177, 177, 177);
+        height: 420px;
+    //    position: sticky;
+        top: 67px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 30px;
+        gap: 3px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    &__avatar {
+        outline: 1px solid $night;
+        margin-bottom: 15px;
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        color: $night;
+
+    }
+
+    &__country {
+        font-weight: 400;
+        font-size: 14px;
+        text-align: center;
+        color: $night;
+        color: rgb(177, 177, 177);
+        margin-bottom: 10px;
+    }
+
+    &__description {
+        font-weight: 400;
+        font-size: 15px;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px;
+    }
+
+    &__social-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    &__social-icon {
+        svg {
+            width: 30px;
+            height: 30px;
+            color: $night;
+        }
+    }
+
+    &__subtitle {
+        text-align: center;
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+
+    &__button {
+        font-family: 'Sora', sans-serif !important;
+        text-transform: capitalize !important;
+    }
+
+    &__posts {
+        padding: 20px;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        gap: 20px;
+    }
+
+    &__posts-title {
+        text-align: center;
+        font-size: 17px;
+    }
+
+    &__posts-container {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        padding: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__post {
+        position: relative;
+    }
+
+    &__post-title,
+    &__post-button {
+        font-family: 'Sora', sans-serif !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__post-button {
+        text-transform: capitalize !important;
+        padding: 0px 13px !important;
+    }
+
+    &__post-icons-container {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        display: flex;
+        gap: 10px;
+    }
+
+    &__icon-edit {
+        background-color: white;
+        padding: 8px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        svg {
+            color: $night;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+}
+

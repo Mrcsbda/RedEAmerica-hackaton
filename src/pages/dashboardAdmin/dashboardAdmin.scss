@@ -1,0 +1,83 @@
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/universal.scss";
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+h1{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 40px;
+
+}
+
+.main {
+    margin:60px auto ;
+    width: 80%;
+}
+table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    transition: all 0.3s ease;
+    min-height: 130px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.main input[type="text"],
+select {
+  width: 200px;
+  padding: 10px;
+  margin: 20px 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+
+}
+
+select {
+//   appearance: none;
+//   background: url('arrow-down.svg') no-repeat right center;
+//   background-color: #fff;
+cursor: pointer;
+}
+.toggle-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken(#4CAF50, 10%);
+    }
+
+    &:active {
+        background-color: darken(#4CAF50, 20%);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(#4CAF50, 0.5);
+    }
+}

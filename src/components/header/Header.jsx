@@ -7,10 +7,14 @@ const Header = () => {
   const { userLogged } = useSelector(state => state.auth)
   return (
     <header className='header'>
-      <figure className='header__logo-container'>
+      <a href="/home" className='header__logo-container'>
         <img className='header__logo' src="https://www.redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="logo icon" />
-      </figure>
-      <Link className='header__link' to="/home" >Inicio</Link>
+      </a>
+      <div>
+      <Link className='header__link' to="/home/members" >MIEMBROS</Link>
+      <Link className='header__link' to="filter" >PUBLICACIONES</Link>
+      <Link className='header__link' to="add-post" >CREAR PUBLICACIÓN</Link>
+      </div>
       <Link to={`/home/profile/${userLogged.id}`}>
         <Avatar
           alt="Remy Sharp"

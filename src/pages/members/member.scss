@@ -1,0 +1,14 @@
+@import '../../../src/assets/styles/variables.scss';
+
+.members {
+    &__section {
+        display: flex;
+        justify-content:flex-start;
+        flex-direction: row;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        padding: 0 3rem;
+
+    }
+}

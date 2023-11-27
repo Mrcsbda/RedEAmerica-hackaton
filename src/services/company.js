@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { firebaseDB } from "../firebase/firebaseConfig";
 
 const collectionCompany = "companies";
@@ -49,3 +49,36 @@ export const getCompanyFromCollection = async (uid) => {
         return null;
     }
 }
+export const getAllCompanies = async () => {
+    try {
+      const companiesRef = collection(firebaseDB, 'companies');
+      const companiesSnapshot = await getDocs(companiesRef);
+  
+      const companies = [];
+  
+      companiesSnapshot.forEach((doc) => {
+        companies.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+  
+      return companies;
+    } catch (error) {
+      console.error('Error al obtener todas las compañías:', error);
+      return false;
+    }
+  };
+  
+
+  export const getCompanies = async () => {
+    try {
+      const companiesRef = collection(firebaseDB, 'companies');
+      const companySnapshot = await getDocs(companiesRef);
+      const companies = companySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      return companies;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };

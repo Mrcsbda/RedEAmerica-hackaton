@@ -1,12 +1,31 @@
-import {Alert, Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField,} from "@mui/material";
+import {
+    Box,
+    Button,
+    CircularProgress,
+    Container,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+} from "@mui/material";
 import {categoriesOptions, formatOptions} from "./constants/optionsSelect.js";
-import {UploadFile, Add} from "@mui/icons-material";
+import {Add, UploadFile} from "@mui/icons-material";
 import {useForm} from "react-hook-form";
 import {useAddPost} from "../../hooks/addPost/useAddPost.js";
 import {useSelector} from "react-redux";
 import {validationFormPost} from "./validateForm.js";
 import {optionsFormValidate} from "./constants/optionsValidateForm.js";
 import ModalError from "../../components/ModalError/ModalError.jsx";
+
+
+const Loading = () => {
+    return (
+        <Box sx={{zIndex: 12, position: 'absolute', left: '40%'}}>
+            <CircularProgress size={100} color="secondary" />
+        </Box>
+    )
+}
 
 const AddPost = () => {
 
@@ -16,8 +35,9 @@ const AddPost = () => {
         register,
         handleSubmit,
         watch,
-        formState: { errors},
-        setValue
+        formState: {errors},
+        setValue,
+        reset
     } = useForm()
 
     const {typeFormat, category} = watch()
@@ -31,8 +51,9 @@ const AddPost = () => {
         fileImagePost,
         imagePost,
         imageUrl,
-        fileInputRef
-    } = useAddPost(userLogged.id)
+        fileInputRef,
+        loading
+    } = useAddPost(userLogged.id, reset)
 
     const errorsList = validationFormPost(errors)
 
@@ -47,10 +68,16 @@ const AddPost = () => {
             backgroundColor: '#fff',
             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.4)'
         }}>
-            <ModalError errors={errorsList} />
+            {
+                loading && (
+                    <Loading />
+                )
+            }
+            <ModalError errors={errorsList}/>
             <form style={{display: 'flex', gap: 25, flexDirection: 'column', width: '100%', position: 'relative'}}
                   onSubmit={handleSubmit(handleSendPost)}>
-                <img src="https://redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="logo" style={{width: '100%', height: '100px'}}/>
+                <img src="https://redeamerica.org/Portals/_default/skins/2023/img/Logo.svg" alt="logo"
+                     style={{width: '100%', height: '100px'}}/>
                 <TextField
                     label='Titulo'
                     variant='outlined' sx={{width: '100%'}}
@@ -71,7 +98,7 @@ const AddPost = () => {
                             label='Tipo de formato'
                             value={typeFormat || ''}
                             {...register('typeFormat', optionsFormValidate.optTypeFormat)}
-                            onChange={(e) =>{
+                            onChange={(e) => {
                                 setValue('typeFormat', e.target.value, {shouldValidate: true})
                             }}
                         >
@@ -95,7 +122,7 @@ const AddPost = () => {
                         label='Categoria'
                         value={category || ''}
                         {...register('category', optionsFormValidate.optCategory)}
-                        onChange={(e) =>{
+                        onChange={(e) => {
                             setValue('category', e.target.value, {shouldValidate: true})
                         }}
                     >
@@ -109,11 +136,17 @@ const AddPost = () => {
                         }
                     </Select>
                 </FormControl>
-                <Box sx={{display: 'flex', height: '200px', gap: 2,alignItems: 'center', justifyContent: 'space-between'}}>
+                <Box sx={{
+                    display: 'flex',
+                    height: '200px',
+                    gap: 2,
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}>
                     <Button
                         variant='contained'
                         sx={{width: '50%', height: 50}}
-                        endIcon={<UploadFile />}
+                        endIcon={<UploadFile/>}
                         onClick={openFileImagePost}
                     >Agregar imagen del post
                     </Button>
@@ -145,7 +178,7 @@ const AddPost = () => {
                     <Button
                         variant='contained'
                         sx={{width: '100%'}}
-                        endIcon={<UploadFile />}
+                        endIcon={<UploadFile/>}
                         onClick={openFileDialog}
                     >Agregar Recurso
                     </Button>

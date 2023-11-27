@@ -1,165 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import { alpha, styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import './home.scss'
 import { useNavigate } from 'react-router-dom';
 import { BiSolidCategory } from "react-icons/bi";
 import CardContentVideo from '../../components/cardContentVideo/CardContentVideo';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-//import './styles.css';
-// import required modules
 import { Grid, Pagination } from 'swiper/modules';
 import CardContentPodcast from '../../components/cardContentPodcast/CardContentPodcast';
 import CardContentDocumnts from '../../components/cardContentDocuments/CardContentDocuments';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.80),
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.9)',
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 1),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '600px',
-  borderRadius: '24px',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: '600px',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+import { useDispatch, useSelector } from 'react-redux';
+import { actionGetPostssAsync } from '../../store/actions/post/gettAllPosts';
+import { categoriesOptions } from '../addPost/constants/optionsSelect';
+import { filterByCategory, filterByCountry, filterBySearch, filterByTypeFormat } from '../../store/slides/posts/postsThunk';
+import { Search, SearchIconWrapper, StyledInputBase } from '../../components/utils/utils';
 
 const Home = () => {
 
   const [searchValue, setSearchValue] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [selectedContent, setSelectedContent] = useState('');
   const [visibleCategories, setVisibleCategories] = useState(10);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const allPostsRedux = useSelector((state) => state.posts.copyPost);
 
-  const post = [
-    {
-      id: "1",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "podcast",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "2",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "3",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "4",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "5",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    }
-  ]
-
-  const categories = [
-    "Informes de gestión",
-    "Comunidades Sostenibles",
-    "Inclusión económica",
-    "Educación",
-    "Salud",
-    "Desarrollo local",
-    "Empresa y Comunidad",
-    "Alianzas y programas",
-    "Casos y experiencias",
-    "Memorias FIR",
-    "Fortalecimiento de miembros",
-    "Paz",
-    "Primera infancia",
-    "Desarrollo de Base",
-    "Premio",
-    "Covid",
-    "Agenda America Latina",
-  ];
+  useEffect(() => {
+    dispatch(actionGetPostssAsync())
+  }, [dispatch]);
 
   const countries = [
     'honduras',
@@ -175,35 +43,35 @@ const Home = () => {
     'argentina'
   ];
 
-
-
   const handleCategoryClick = (category) => {
-    navigate(`/home/filter/${category}`);
-    setSelectedCategory(category);
-    console.log(selectedCategory);
+    dispatch(filterByCategory(category.category))
+    navigate(`/home/filter/${category.category}`);
   };
 
   const handleLoadMoreCategories = () => {
-    setVisibleCategories(categories.length);
+    setVisibleCategories(categoriesOptions.length);
   };
 
   const handleCountryClick = (country) => {
+    dispatch(filterByCountry(country))
     navigate(`/home/filter/${country}`);
-    setSelectedCountry(country);
-    console.log(selectedcountry);
   };
 
   const handleSearchClick = (event) => {
+
     if (event.key === 'Enter') {
-      console.log('Búsqueda realizada:', searchValue);
+      dispatch(filterBySearch(searchValue))
       navigate(`/home/filter/${searchValue}`);
     }
   };
 
   const handleContentClick = (content) => {
+    dispatch(filterByTypeFormat(content))
     navigate(`/home/filter/${content}`);
-    setSelectedContent(content);
-    console.log(selectedContent);
+  };
+
+  const handleGoToPost = (post) => {
+    navigate(`/home/post/${post}`);
   };
 
 
@@ -232,21 +100,23 @@ const Home = () => {
 
       {/*****************Seccion dos*****************/}
       <section className='home__section__categories'>
-        <h3 className='home__section__categories__title'>Explora por categorias</h3>
+        <h3 className='home__section__categories__title'>Explora por categorías</h3>
         <div className='home__article__categories'>
-          {categories.slice(0, visibleCategories).map((category) => (
-            <button key={category} className='home__article__categories__btn' onClick={() => handleCategoryClick(category)}>
-              {category}
+          {categoriesOptions.slice(0, visibleCategories).map((category) => (
+            <button key={category.id} className='home__article__categories__btn' onClick={() => handleCategoryClick(category)}>
+              {category.category}
             </button>
           ))}
         </div>
-        {visibleCategories < categories.length && (
+        {visibleCategories < categoriesOptions.length && (
           <button className='home__article__loadMoreBtn' onClick={handleLoadMoreCategories}>
             <BiSolidCategory className='home__article__loadMoreBtn__icon' />
             <span>Ver más categorías...</span>
           </button>
         )}
       </section>
+
+
 
       {/*****************Seccion tres*****************/}
       <section className='home__section__searchByCountry'>
@@ -292,13 +162,18 @@ const Home = () => {
               },
             }}
           >
-            {Object.keys(post).map((key) => (
+            {Object.keys(allPostsRedux)
+              .filter((key) => allPostsRedux[key].typeFormat === 'video')
+              .slice(-15)  // Obtener los últimos 15 elementos
+              .map((key) => (
+                <SwiperSlide key={key}>
+                  <div onClick={() => handleGoToPost(allPostsRedux[key].id)}>
+                    <CardContentVideo key={key} title={allPostsRedux[key].title} image={allPostsRedux[key].imagePost} content={allPostsRedux[key].content} />
+                  </div>
+                </SwiperSlide>
+              ))}
 
-              <SwiperSlide key={key}>
-                <CardContentVideo key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
-              </SwiperSlide>
 
-            ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
             <bottom onClick={() => handleContentClick("video")}>Ver todo el contenido...</bottom>
@@ -339,13 +214,17 @@ const Home = () => {
               },
             }}
           >
-            {Object.keys(post).map((key) => (
+            {Object.keys(allPostsRedux)
+              .filter((key) => allPostsRedux[key].typeFormat === 'podcast')
+              .slice(-15)  // Obtener los últimos 15 elementos
+              .map((key) => (
+                <SwiperSlide key={key}>
+                  <div onClick={() => handleGoToPost(allPostsRedux[key].id)}>
+                    <CardContentPodcast key={key} title={allPostsRedux[key].title} image={allPostsRedux[key].imagePost} content={allPostsRedux[key].content} />
+                  </div>
+                </SwiperSlide>
+              ))}
 
-              <SwiperSlide key={key}>
-                <CardContentPodcast key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
-              </SwiperSlide>
-
-            ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
             <bottom onClick={() => handleContentClick("podcast")}>Ver todo el contenido...</bottom>
@@ -386,15 +265,20 @@ const Home = () => {
               },
             }}
           >
-            {Object.keys(post).map((key) => (
+            {Object.keys(allPostsRedux)
+              .filter((key) => allPostsRedux[key].typeFormat === 'pdf')
+              .slice(-15)  // Obtener los últimos 15 elementos
+              .map((key) => (
+                <SwiperSlide key={key}>
+                  <div onClick={() => handleGoToPost(allPostsRedux[key].id)}>
+                    <CardContentDocumnts key={key} title={allPostsRedux[key].title} image={allPostsRedux[key].imagePost} content={allPostsRedux[key].content} onClick={() => handleGoToPost(allPostsRedux[key].id)} />
+                  </div>
+                </SwiperSlide>
+              ))}
 
-              <SwiperSlide key={key}>
-                <CardContentDocumnts key={key} title={post[key].title} image={post[key].image} content={post[key].content} />
-              </SwiperSlide>
-            ))}
           </Swiper>
           <article className='home__article__lastContent__btn'>
-            <bottom onClick={() => handleContentClick("document")}>Ver todo el contenido...</bottom>
+            <bottom onClick={() => handleContentClick("pdf")}>Ver todo el contenido...</bottom>
 
           </article>
         </div>

@@ -48,7 +48,7 @@ const AppRouter = () => {
                             <Route element={<PrivateRoutes isAuthenticated={isAuthenticated} />}>
                                 {
                                     role === "ADMIN" ? (
-                                        <Route path='/home' element={<DashboardAdmin />} />
+                                        <Route path='/home-admin' element={<DashboardAdmin />} />
                                     ) : (
                                         <Route path='/home' element={<Layout />}>
                                             <Route index element={<Home />} />

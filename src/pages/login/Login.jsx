@@ -36,6 +36,7 @@ const Login = () => {
             label="Contraseña"
             variant="outlined"
             className="main__login__input"
+            type="password"
             {...register("password", { required: true })}
           />
           <Button variant="contained" type="submit">

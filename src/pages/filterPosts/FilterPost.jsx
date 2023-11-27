@@ -1,67 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import { alpha, styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-//import './home.scss'
 import './filterPost.scss'
 import { useNavigate, useParams } from 'react-router-dom';
-import { BiSolidCategory } from "react-icons/bi";
 import CardContentVideo from '../../components/cardContentVideo/CardContentVideo';
-import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-//import './styles.css';
-// import required modules
 import { Grid, Pagination } from 'swiper/modules';
 import CardContentPodcast from '../../components/cardContentPodcast/CardContentPodcast';
 import CardContentDocumnts from '../../components/cardContentDocuments/CardContentDocuments';
-import CardsByContent from '../../components/cardsByContent/CardsByContent';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Autocomplete, TextField } from "@mui/material";
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.80),
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.9)',
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 1),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '600px',
-    borderRadius: '24px',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: '600px',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
-    },
-}));
+import { useDispatch, useSelector } from 'react-redux';
+import { actionGetPostssAsync } from '../../store/actions/post/gettAllPosts';
+import { filterByCategory, filterByCountry, filterBySearch, filterByTypeFormat } from '../../store/slides/posts/postsThunk';
+import { Search, SearchIconWrapper, StyledInputBase } from '../../components/utils/utils';
 
 const FilterPost = () => {
 
@@ -69,172 +22,28 @@ const FilterPost = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedContent, setSelectedContent] = useState('');
-    const [visibleCategories, setVisibleCategories] = useState(10);
-    const [localFilter, setLocalFilter] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { filterAplied } = useParams();
-    console.log(filterAplied);
 
-    const post = [
-        {
-            id: "1",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "honduras",
-            contentType: "podcast",
-            categoryId: "Informes de gestión",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
+    // const allPostsRedux = useSelector((state) => state.posts.posts);
+    const allPostsRedux = useSelector((state) => state.posts.copyPost);
 
-        },
-        {
-            id: "2",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "colombia",
-            contentType: "video",
-            categoryId: "Educación",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "3",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "colombia",
-            contentType: "documento",
-            categoryId: "Salud",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "4",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "colombia",
-            contentType: "video",
-            categoryId: "Informes de gestión",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "5",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "colombia",
-            contentType: "podcast",
-            categoryId: "Salud",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "6",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "colombia",
-            contentType: "podcast",
-            categoryId: "Inclusión económica",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "7",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "venezuela",
-            contentType: "video",
-            categoryId: "informes de gestión",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "8",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "colombia",
-            contentType: "documento",
-            categoryId: "Comunidades Sostenibles",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "9",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "honduras",
-            contentType: "video",
-            categoryId: "Inclusión económica",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-        },
-        {
-            id: "10",
-            title: "Las Comunidades Sostenibles, nuestro desafío",
-            content: "contenido",
-            format: "video",
-            idCompany: "1",
-            timeStamp: "2023",
-            country: "venezuela",
-            contentType: "podcast",
-            categoryId: "Comunidades Sostenibles",
-            urlFile: "",
-            image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
+    useEffect(() => {
+        if (!filterAplied) {
+            dispatch(actionGetPostssAsync())
         }
-    ]
+    }, [dispatch]);
+
 
     const categories = [
-        "Informes de gestión",
-        "Comunidades Sostenibles",
-        "Inclusión económica",
-        "Educación",
-        "Salud",
-        "Desarrollo local",
-        "Empresa y Comunidad",
-        "Alianzas y programas",
-        "Casos y experiencias",
-        "Memorias FIR",
-        "Fortalecimiento de miembros",
-        "Paz",
-        "Primera infancia",
-        "Desarrollo de Base",
-        "Premio",
-        "Covid",
-        "Agenda America Latina",
+        'Desarrollo Comunitario',
+        'Inversión Social:',
+        'Educación para el Desarrollo Sostenible',
+        'Emprendimiento Social',
+        'Salud y Bienestar:',
+        'Medio Ambiente y Sostenibilidad:',
+        'Desarrollo Económico Local',
     ];
 
     const countries = [
@@ -254,37 +63,14 @@ const FilterPost = () => {
     const contentTypes = [
         "video",
         "podcast",
-        "documento"
+        "pdf"
     ]
 
 
-    const handleCategoryClick = (category) => {
-        navigate(`/home/filter/${category}`);
-        setSelectedCategory(category);
-        console.log(selectedCategory);
-    };
-
-    const handleLoadMoreCategories = () => {
-        setVisibleCategories(categories.length);
-    };
-
-    const handleCountryClick = (country) => {
-        navigate(`/home/filter/${country}`);
-        setSelectedCountry(country);
-        console.log(selectedcountry);
-    };
-
     const handleSearchClick = (event) => {
         if (event.key === 'Enter') {
-            console.log('Búsqueda realizada:', searchValue);
-            navigate(`/home/filter/${searchValue}`);
+            dispatch(filterBySearch(searchValue))
         }
-    };
-
-    const handleContentClick = (content) => {
-        navigate(`home/filter/${content}`);
-        setSelectedContent(content);
-        //   console.log(selectedContent);
     };
 
     const defaultPropsCountries = {
@@ -305,40 +91,60 @@ const FilterPost = () => {
         options: countries.map((option) => option),
     };
 
-
-    const handleChange = (event, newValue, context) => {
-        navigate(`/home/filter/${newValue}`);
+    const handleGoToPost = (post) => {
+        navigate(`/home/post/${post}`);
     };
-
-    console.log(selectedCountry);
-
-    const filteredPosts = post.filter((post) => {
-        const lowerCaseFilter = filterAplied.toLowerCase();
-        const titleMatches = post.title.toLowerCase().includes(lowerCaseFilter);
-        const contentMatches = post.content.toLowerCase().includes(lowerCaseFilter);
-        const categoryMatches = post.categoryId === filterAplied;
-        const countryMatches = post.country === selectedCountry;
-        const contentTypeMatches = post.contentType === filterAplied;
-
-        return titleMatches || contentMatches || categoryMatches || countryMatches || contentTypeMatches;
-    });
-
-
 
     const renderCard = (post) => {
 
-        switch (post.contentType) {
+        switch (post.typeFormat) {
             case 'video':
-                return <CardContentVideo image={post.image} title={post.title} content={post.content} />;
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentVideo image={post.imagePost} title={post.title} content={post.content} />
+                    </div>
+                );
             case 'podcast':
-                return <CardContentPodcast image={post.image} title={post.title} content={post.content} />;
-            case 'documento':
-                return <CardContentDocumnts image={post.image} title={post.title} content={post.content} />;
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentPodcast image={post.imagePost} title={post.title} content={post.content} />
+                    </div>
+                );
+            case 'pdf':
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentDocumnts image={post.imagePost} title={post.title} content={post.content} />
+                    </div>
+                );
+            case 'image':
+                return (
+                    <div onClick={() => handleGoToPost(post.id)}>
+                        <CardContentVideo image={post.imagePost} title={post.title} content={post.content} />
+                    </div>
+                );
             default:
                 return null;
         }
     };
 
+
+    const handleFilterCountry = ((event, newValue) => {
+        dispatch(filterByCountry(newValue))
+    }
+    )
+
+    const handleFilterCategory = ((event, newValue) => {
+
+
+        dispatch(filterByCategory(newValue))
+
+    }
+    )
+
+    const handleFiltertypeFormat = ((event, newValue) => {
+        dispatch(filterByTypeFormat(newValue))
+    }
+    )
 
     return (
         <>
@@ -366,7 +172,8 @@ const FilterPost = () => {
                             id="select-on-focus"
                             selectOnFocus
                             value={selectedCountry}
-                            onChange={(event, newValue) => handleChange(event, newValue, 'country')}
+                            onChange={(event, newValue) => handleFilterCountry(event, newValue)}
+                            // onChange={(event, newValue) => handleChange(event, newValue, 'country')}
                             renderInput={(params) => <TextField {...params} label="País" margin="normal" />}
                         />
 
@@ -378,7 +185,8 @@ const FilterPost = () => {
                             id="select-on-focus"
                             selectOnFocus
                             value={selectedCategory}
-                            onChange={(event, newValue) => handleChange(event, newValue, 'category')}
+                            onChange={(event, newValue) => handleFilterCategory(event, newValue)}
+                            // onChange={(event, newValue) => handleChange(event, newValue, 'category')}
                             renderInput={(params) => <TextField {...params} label="Categoría" margin="normal" />}
                         />
 
@@ -390,7 +198,8 @@ const FilterPost = () => {
                             id="select-on-focus"
                             selectOnFocus
                             value={selectedContent}
-                            onChange={(event, newValue) => handleChange(event, newValue, 'contentTypes')}
+                            onChange={(event, newValue) => handleFiltertypeFormat(event, newValue)}
+                            //onChange={(event, newValue) => handleChange(event, newValue, 'contentTypes')}
                             renderInput={(params) => <TextField {...params} label="Tipo de contenido" margin="normal" />}
                         />
                     </div>
@@ -403,13 +212,16 @@ const FilterPost = () => {
                     columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }}
                     gutter={'2rem'}
                 >
-                    <Masonry gutter={'2rem'} style={{ display: 'flex', justifyContent: 'center' }}>
-                        {filteredPosts.map(renderCard)}
-                    </Masonry>
+                    {allPostsRedux && allPostsRedux.length > 0 ? (
+                        <Masonry gutter={'2rem'} style={{ display: 'flex', justifyContent: 'center' }}>
+                            {allPostsRedux.map(renderCard)}
+                        </Masonry>
+                    ) : (
+                        <p>No se encontraron resultados</p>
+                    )}
+
                 </ResponsiveMasonry>
             </section>
-
-
         </>
     )
 }
