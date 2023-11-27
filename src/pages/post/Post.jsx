@@ -28,19 +28,22 @@ const Post = () => {
                         <LinearProgress color="secondary" />
                     </Box>
                 ):(
-                    <Box sx={{width: '100%', display: 'flex', mb: 3, p:5, gap:3}}>
-                        <Box sx={{width: '50%', pt: 3, position: 'relative'}}>
+                    <Box sx={{width: '100%', display:'flex',gap:3, border: 2, p:3, overflowY: 'auto'}}>
+                        <Box sx={{width: '50%', pt: 3, position: 'relative', pb: 5}}>
                             <Typography variant='h3' sx={{mb:2}}>{detail.post.title}</Typography>
-                            <Box sx={{height: '65%'}}>
+                            <Box sx={{height: '65%', mb:2}}>
                                 <embed src={detail.post.recurs} type="application/pdf" width="100%"
                                        height="100%"/>
                             </Box>
-                            <Box sx={{position: 'absolute', bottom: 0}}>
-                                <Typography variant='body1' sx={{fontSize: 20, mt: 3}}>{detail.post.content}</Typography>
+                            <Box >
+                                <Typography variant='body1' sx={{fontSize: 20, mt: 3}}>
+                                    {detail.post.content}
+                                </Typography>
                                 <Link to='/home/comments/12'>
                                     <Button variant='contained' sx={{mt: 3}}>Crear comentario</Button>
                                 </Link>
                             </Box>
+                            <div style={{paddingTop: 35}}></div>
                         </Box>
                         <Box sx={{width: '50%', pt: 3}}>
                             <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -76,7 +79,7 @@ const Post = () => {
                                     </Link>
                                     <SwipeRight sx={{fontSize: 80}} />
                                 </Box>
-                                <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center',position: 'absolute',bottom: 30, left: '65%'}}>
+                                <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', pt:10}}>
                                     <Typography variant='h4'>nuestras redes sociales</Typography>
                                     <Box sx={{display: 'flex', justifyContent: 'center', gap: 5}}>
                                         <Instagram sx={{fontSize: '4rem'}}/>
