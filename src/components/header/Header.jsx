@@ -12,7 +12,7 @@ const Header = () => {
       </a>
       <div>
       <Link className='header__link' to="/home/members" >MIEMBROS</Link>
-      <Link className='header__link' to="filter/all" >PUBLICACIONES</Link>
+      <Link className='header__link' to="filter" >PUBLICACIONES</Link>
       <Link className='header__link' to="add-post" >CREAR PUBLICACIÓN</Link>
       </div>
       <Link to={`/home/profile/${userLogged.id}`}>

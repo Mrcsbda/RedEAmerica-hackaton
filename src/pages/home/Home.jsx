@@ -1,183 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
-import { alpha, styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import './home.scss'
 import { useNavigate } from 'react-router-dom';
 import { BiSolidCategory } from "react-icons/bi";
 import CardContentVideo from '../../components/cardContentVideo/CardContentVideo';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-//import './styles.css';
-// import required modules
 import { Grid, Pagination } from 'swiper/modules';
 import CardContentPodcast from '../../components/cardContentPodcast/CardContentPodcast';
 import CardContentDocumnts from '../../components/cardContentDocuments/CardContentDocuments';
-import { getAllPosts } from '../../services/posts';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionGetPostssAsync } from '../../store/actions/post/gettAllPosts';
 import { categoriesOptions } from '../addPost/constants/optionsSelect';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.80),
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.9)',
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 1),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '600px',
-  borderRadius: '24px',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: '600px',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
+import { filterByCategory, filterByCountry, filterBySearch, filterByTypeFormat } from '../../store/slides/posts/postsThunk';
+import { Search, SearchIconWrapper, StyledInputBase } from '../../components/utils/utils';
 
 const Home = () => {
 
   const [searchValue, setSearchValue] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [selectedContent, setSelectedContent] = useState('');
   const [visibleCategories, setVisibleCategories] = useState(10);
-  const [allPosts, setAllPost] = useState(null)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-
-  const allPostsRedux = useSelector((state) => state.posts.posts);
+  const allPostsRedux = useSelector((state) => state.posts.copyPost);
 
   useEffect(() => {
     dispatch(actionGetPostssAsync())
   }, [dispatch]);
-
-  console.log(allPostsRedux);
-
-
-
-  const post = [
-    {
-      id: "1",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "podcast",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "2",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "3",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "4",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    },
-    {
-      id: "5",
-      title: "Las Comunidades Sostenibles, nuestro desafío",
-      content: "contenido",
-      format: "video",
-      idCompany: "1",
-      timeStamp: "2023",
-      country: "colombia",
-      contentType: "",
-      categoryId: "informes de gestión",
-      urlFile: "",
-      image: "https://www.redeamerica.org/Portals/0/EasyDNNNews/2324/images/img-UNICA_400-600-600-p-L-97.jpg",
-
-    }
-  ]
-
-  const categories = [
-    "Educación para el Desarrollo Sostenible",
-    "Informes de gestión",
-    "Comunidades Sostenibles",
-    "Inclusión económica",
-    "Educación",
-    "Salud",
-    "Desarrollo local",
-    "Empresa y Comunidad",
-    "Alianzas y programas",
-    "Casos y experiencias",
-    "Memorias FIR",
-    "Fortalecimiento de miembros",
-    "Paz",
-    "Primera infancia",
-    "Desarrollo de Base",
-    "Premio",
-    "Covid",
-    "Agenda America Latina",
-  ];
 
   const countries = [
     'honduras',
@@ -193,12 +43,9 @@ const Home = () => {
     'argentina'
   ];
 
-
-
   const handleCategoryClick = (category) => {
+    dispatch(filterByCategory(category.category))
     navigate(`/home/filter/${category.category}`);
-    setSelectedCategory(category);
-    console.log(selectedCategory);
   };
 
   const handleLoadMoreCategories = () => {
@@ -206,27 +53,25 @@ const Home = () => {
   };
 
   const handleCountryClick = (country) => {
+    dispatch(filterByCountry(country))
     navigate(`/home/filter/${country}`);
-    setSelectedCountry(country);
-    console.log(selectedcountry);
   };
 
   const handleSearchClick = (event) => {
+
     if (event.key === 'Enter') {
-      console.log('Búsqueda realizada:', searchValue);
+      dispatch(filterBySearch(searchValue))
       navigate(`/home/filter/${searchValue}`);
     }
   };
 
   const handleContentClick = (content) => {
+    dispatch(filterByTypeFormat(content))
     navigate(`/home/filter/${content}`);
-    setSelectedContent(content);
-    console.log(selectedContent);
   };
 
   const handleGoToPost = (post) => {
     navigate(`/home/post/${post}`);
-    console.log(post);
   };
 
 
@@ -255,7 +100,7 @@ const Home = () => {
 
       {/*****************Seccion dos*****************/}
       <section className='home__section__categories'>
-        <h3 className='home__section__categories__title'>Explora por categorias</h3>
+        <h3 className='home__section__categories__title'>Explora por categorías</h3>
         <div className='home__article__categories'>
           {categoriesOptions.slice(0, visibleCategories).map((category) => (
             <button key={category.id} className='home__article__categories__btn' onClick={() => handleCategoryClick(category)}>
@@ -431,11 +276,9 @@ const Home = () => {
                 </SwiperSlide>
               ))}
 
-
-
           </Swiper>
           <article className='home__article__lastContent__btn'>
-            <bottom onClick={() => handleContentClick("document")}>Ver todo el contenido...</bottom>
+            <bottom onClick={() => handleContentClick("pdf")}>Ver todo el contenido...</bottom>
 
           </article>
         </div>
