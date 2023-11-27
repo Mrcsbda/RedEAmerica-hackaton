@@ -15,9 +15,7 @@ const CardMember = ({user}) => {
 
     const navigate = useNavigate()
 
-
-
-    const navigateToContactForm = () => {
+    const navigateToContactForm = (memberId) => {
         navigate(`/home/contact/${memberId}`)
     }
     const navigateToProfile = (memberId) => {
@@ -55,7 +53,7 @@ const CardMember = ({user}) => {
                 }
             </div>
             <h2 className='member__subtitle'>¿Quieres colaborar con nosotros?</h2>
-            <Button className='member__button' variant="contained" onClick={navigateToContactForm}>¡Contactanos!</Button>
+            <Button className='member__button' variant="contained" onClick={() => navigateToContactForm(user.id)}>¡Contactanos!</Button>
             <Button className='member__button' variant="contained" onClick={() => navigateToProfile(user.id)}>VER PERFIL DE EMPRESA</Button>
 
         </section>
