@@ -1,6 +1,7 @@
 import { collection, addDoc, query, where, getDocs, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { firebaseDB } from '../firebase/firebaseConfig.js';
 import Swal from "sweetalert2";
+import { getCompanyInfo } from './company.js';
 
 const addPost = async (postData) => {
     try {
@@ -24,19 +25,19 @@ const addPost = async (postData) => {
     }
 }
 
-const getPostById = async(idPost) => {
+const getPostById = async (idPost) => {
     try {
         const documentPost = await getDoc(doc(firebaseDB, 'posts', idPost));
 
-        if (documentPost.exists()){
+        if (documentPost.exists()) {
             const postFind = documentPost.data();
             const documentCompany = await getDoc(doc(firebaseDB, 'companies', postFind.userId));
-            if (documentCompany.exists()){
+            if (documentCompany.exists()) {
                 return {
                     post: postFind,
                     company: documentCompany.data()
                 }
-            }else {
+            } else {
                 Swal.fire(
                     "Oops!",
                     'El documento de la compañia no existe',
@@ -44,14 +45,14 @@ const getPostById = async(idPost) => {
                 );
             }
 
-        }else {
+        } else {
             Swal.fire(
                 "Oops!",
                 'El documento del post no existe',
                 "error"
             );
         }
-    }catch (e) {
+    } catch (e) {
         console.error(e);
         Swal.fire(
             "Oops!",
@@ -120,14 +121,34 @@ export const updatePost = async (idPost, updateInfo) => {
 export const getAllPosts = async () => {
     try {
         const postsRef = collection(firebaseDB, 'posts');
-        const querySnapshot = await getDocs(postsRef);
 
-        const posts = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
+        const dataDocu = await getDocs(collection(firebaseDB, 'posts'))
+        let documentos = [];
 
-        return posts;
+        for (const doc of dataDocu.docs) {
+            const post = doc.data()
+            console.log(post.userId);
+            const companyDoct = await getCompanyInfo(post.userId);
+            console.log(companyDoct);
+            const postInfo = {
+                id: doc.id,
+                ...post,
+                country: companyDoct.country,
+            }
+            documentos.push(postInfo)
+        }
+
+        return documentos;
+        console.log(documentos);
+
+        // const querySnapshot = await getDocs(postsRef);
+
+        // const posts = querySnapshot.docs.map((doc) => ({
+        //     id: doc.id,
+        //     ...doc.data(),
+        // }));
+
+        //return posts;
     } catch (error) {
         console.error('Error fetching all posts:', error);
         throw error;
